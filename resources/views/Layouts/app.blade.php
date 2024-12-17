@@ -13,62 +13,101 @@
             margin: 0;
         }
         .sidebar {
-            height: 513px;
             background-color: #f8f9fa;
+            min-height: 100vh;
         }
         .main-content {
-            height: calc(100vh - 80px);
             overflow-y: auto;
+            padding: 1rem;
         }
     </style>
 </head>
 <body>
     <div class="container-fluid">
-        <header class="header bg-transparent p-1 d-flex align-items-center">
-            <div>
-                <img src="logo_astratech.png" alt="ASTRAtech Logo" style="height: 50px; margin-right: 15px;">
+        <!-- Header Section -->
+        <header class="bg-transparent p-2 d-flex align-items-center justify-content-between">
+            <!-- Logo on the left -->
+            <div class="flex-shrink-0">
+                <img src="{{ asset('layouts/logo_astratech.png') }}" alt="ASTRAtech Logo" style="height: 50px; width: auto;">
             </div>
-            <div class="text-black">
-                <p><strong>ALFIA FAUZIAH (MAHASISWA)</strong><br><small>Login terakhir: 15 Desember 2024, 00:02 WIB</small></p>
+
+            <!-- Content on the right (text and button) -->
+            <div class="d-flex justify-content-end align-items-center">
+                <div class="text-black text-end">
+                    <p class="m-0">
+                        <strong>ALFIA FAUZIAH (MAHASISWA)</strong><br>
+                        <small>Login terakhir: 15 Desember 2024, 00:02 WIB</small>
+                    </p>
+                </div>
+                <div class="d-md-none">
+                    <button class="btn btn-light" type="button" data-bs-toggle="collapse" data-bs-target="#sidebarMenu" aria-expanded="false" aria-controls="sidebarMenu">
+                        <i class="fas fa-bars"></i>
+                    </button>
+                </div>
+                <span style="position: relative; margin-left: 10px;">
+                    <i class="fas fa-envelope" style="font-size: 1.8rem; color: #343a40;"></i>
+                    <span style="
+                        position: absolute;
+                        top: -5px;
+                        right: -5px;
+                        background-color: #007bff;
+                        color: white;
+                        font-size: 0.8rem;
+                        font-weight: bold;
+                        border-radius: 50%;
+                        width: 20px;
+                        height: 20px;
+                        display: flex;
+                        justify-content: center;
+                        align-items: center;">
+                        0
+                    </span>
+                </span>
             </div>
         </header>
-        <div class="row flex-grow-1">
-            <aside class="col-md-2 sidebar p-1">
-                <ul>
-                    <li><a href="#"><i class="fas fa-sign-out-alt"></i>  Logout</a></li>
-                    <li><a href="#"><i class="fas fa-home"></i>  Dashboard</a></li>
+
+
+        <div class="row g-0">
+            <!-- Sidebar -->
+            <nav class="col-md-2 collapse d-md-block sidebar p-1" id="sidebarMenu">
+                <ul class="list-unstyled">
                     <li>
-                    <a href="#" onclick="toggleDropdown(event)">
-                        <i class="fas fa-caret-down"></i>  Kesehatan
-                    </a>
-                    <ul class="dropdown" style="display: none;"> <!-- Dropdown in Sidebar -->
-                        <li><a href="#">Absensi Kesehatan</a></li>
-                        <li><a href="#">Rekap Kehadiran</a></li>
-                        <li><a href="#">Resume</a></li>
-                    </ul>
+                        <a href="#" class="btn btn-light btn-block mb-2 w-100">
+                            <i class="fas fa-sign-out-alt"></i> Logout
+                        </a>
+                    </li>
+                    <li>
+                        <a href="{{ route('dashboards.show', ['page' => 'index']) }}" class="btn btn-light btn-block mb-2 w-100">
+                            <i class="fas fa-home"></i> Dashboard
+                        </a>
+                    </li>
+                    <li>
+                        <a href="#" class="btn btn-light btn-block mb-2 w-100" data-bs-toggle="collapse" data-bs-target="#healthDropdown" aria-expanded="false">
+                            <i class="fas fa-caret-down"></i> Kesehatan
+                        </a>
+                        <ul id="healthDropdown" class="list-unstyled collapse ps-3">
+                            <li>
+                                <a href="#" class="btn btn-light btn-block mb-1 w-100">Absensi Kesehatan</a>
+                            </li>
+                            <li>
+                                <a href="#" class="btn btn-light btn-block mb-1 w-100">Rekap Kehadiran</a>
+                            </li>
+                            <li>
+                                <a href="#" class="btn btn-light btn-block mb-1 w-100">Resume</a>
+                            </li>
+                        </ul>
                     </li>
                 </ul>
-            </aside>
-            <main class="col-md-10 p-1 main-content">
+            </nav>
+
+            <!-- Main Content -->
+            <main class="col-md-10 col-sm-12 main-content">
                 @yield('content')
             </main>
         </div>
     </div>
-    <script>
-    function toggleDropdown(event) {
-    event.preventDefault(); // Prevent default link action
-    const dropdown = event.target.nextElementSibling;
 
-    if (dropdown && dropdown.classList.contains('dropdown')) {
-      // Toggle the display of the dropdown menu
-      if (dropdown.style.display === 'block') {
-        dropdown.style.display = 'none'; // Hide the menu
-      } else {
-        dropdown.style.display = 'block'; // Show the menu
-      }
-    }
-  }
-  </script>
+    <!-- Bootstrap Bundle with Popper -->
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/js/bootstrap.bundle.min.js"></script>
 </body>
 </html>

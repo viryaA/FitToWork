@@ -1,12 +1,11 @@
 <?php
 
 use Illuminate\Support\Facades\Route;
-
-Route::get('/', function () {
-    return view('dashboards.absensi');
-});
-
 use App\Http\Controllers\AuthController;
+use App\Http\Controllers\DashboardController;
+
+
+Route::get('dashboards/{page}', [DashboardController::class, 'show'])->name('dashboards.show');
 
 
 
