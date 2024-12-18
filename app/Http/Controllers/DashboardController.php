@@ -9,7 +9,7 @@ class DashboardController extends Controller
     public function show($page)
     {
         // Check if the view exists to prevent errors
-        $validPages = ['absensi', 'beranda', 'index'];  // Add your valid pages here
+        $validPages = ['absensi', 'beranda', 'index','resume'];  // Add your valid pages here
 
         if (in_array($page, $validPages)) {
             return view('dashboards.' . $page);

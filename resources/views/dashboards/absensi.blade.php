@@ -2,9 +2,38 @@
 @extends('layouts.app')
 
 @section('title', 'Form Absensi Kesehatan')
-
+@section('style')
+<style>
+        body {
+            font-family: Arial, sans-serif;
+        }
+        .header {
+            font-size: 1.5rem;
+            font-weight: bold;
+            color: #007bff;
+        }
+        .subheader {
+            font-size: 1.5rem;
+            font-weight: bold;
+            color: #000;
+        }
+        .divider {
+            border-top: 1px solid #dee2e6;
+            margin-top: 0.5rem;
+            margin-bottom: 1rem;
+        }
+    </style>
+@endsection
 @section('content')
 <div class="content">
+    <div class="d-flex align-items-center">
+            <span class="header">Fit to Work</span>
+            <span class="mx-2">/</span>
+            <span class="subheader">Kesehatan</span>
+            <span class="mx-2">/</span>
+            <span class="subheader">Resume</span>
+    </div>
+    <div class="divider"></div>
     <div class="card mb-4">
         <div class="card-header" style="background-color: #007bff; color: white;">
             <i><strong>Kuesioner Self-Assessment Fit to Work</strong></i>

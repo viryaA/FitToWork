@@ -72,70 +72,26 @@
                 <img src="{{ asset('layouts/logo_astratech.png') }}" alt="ASTRAtech Logo" style="height: 50px; width: auto;">
             </div>
             <div class="d-flex justify-content-end align-items-center">
-                <div class="text-black text-end">
+                <div class="text-black text-end" style="position: relative; margin-left: 10px; margin-right: 20px;">
                     <p class="m-0">
-                        <strong>ALFIA FAUZIAH (MAHASISWA)</strong><br>
-                        <small>Login terakhir: 15 Desember 2024, 00:02 WIB</small>
+                    Hai, <span><strong>{{ auth()->user()->name ?? 'Guest' }}</strong></span>
                     </p>
                 </div>
-                <div class="d-md-none">
+                <div class="d-md-none" >
                     <button class="btn btn-light" type="button" id="sidebarToggle">
                         <i class="fas fa-bars"></i>
                     </button>
                 </div>
-                <span style="position: relative; margin-left: 10px; margin-right: 20px;">
-                    <i class="fas fa-envelope" style="font-size: 1.8rem; color: #343a40;"></i>
-                    <span style="
-                        position: absolute;
-                        top: -5px;
-                        right: -5px;
-                        background-color: #007bff;
-                        color: white;
-                        font-size: 0.8rem;
-                        font-weight: bold;
-                        border-radius: 50%;
-                        width: 20px;
-                        height: 20px;
-                        display: flex;
-                        justify-content: center;
-                        align-items: center;">
-                        0
-                    </span>
-                </span>
             </div>
         </header>
 
         <div class="row g-0">
             <!-- Sidebar -->
-            <nav class="col-md-2 sidebar p-1" id="sidebarMenu">
-                <ul class="list-unstyled">
-                    <li>
-                        <a href="#" class="btn btn-light btn-block mb-2 w-100">
-                            <i class=" fas fa-sign-out-alt"></i> Logout
-                        </a>
-                    </li>
-                    <li>
-                        <a href="{{ route('dashboards.show', ['page' => 'index']) }}" class="btn btn-light btn-block mb-2 w-100 active">
-                            <i class="fas fa-home"></i> Dashboard
-                        </a>
-                    </li>
-                    <li>
-                        <a href="#" class="btn btn-light btn-block mb-1 w-100" data-bs-toggle="collapse" data-bs-target="#healthDropdown" aria-expanded="false">
-                            <i class="fas fa-caret-down"></i> Kesehatan
-                        </a>
-                        <ul id="healthDropdown" class="list-unstyled collapse ps-3">
-                            <li>
-                                <a href="{{ route('dashboards.show', ['page' => 'absensi']) }}" class="btn btn-light btn-block mb-2 w-100">Absensi Kesehatan</a>
-                            </li>
-                            <li>
-                                <a href="{{ route('dashboards.show', ['page' => 'Rekap']) }}" class="btn btn-light btn-block mb-2 w-100">Rekap Kehadiran</a>
-                            </li>
-                            <li>
-                                <a href="{{ route('dashboards.show', ['page' => 'resume']) }}" class="btn btn-light btn-block mb-2 w-100">Resume</a>
-                            </li>
-                        </ul>
-                    </li>
-                </ul>
+            <nav class="col-md-2 sidebar" id="sidebarMenu">
+              <ul class="list-unstyled">
+                <li><a href="#"><i class="fas fa-key me-2"></i> Ubah Kata Sandi</a></li>
+                <li><a href="#"><i class="fas fa-sign-out-alt me-2"></i> Logout</a></li>
+              </ul>
             </nav>
 
             <!-- Main Content -->
