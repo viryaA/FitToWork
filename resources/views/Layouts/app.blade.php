@@ -109,29 +109,47 @@
             <!-- Sidebar -->
             <nav class="col-md-2 sidebar p-1" id="sidebarMenu">
                 <ul class="list-unstyled">
+                    <!-- Logout Button -->
                     <li>
-                        <a href="#" class="btn btn-light btn-block mb-2 w-100">
-                            <i class=" fas fa-sign-out-alt"></i> Logout
+                        <form action="{{ route('logout') }}" method="POST" class="w-100">
+                            @csrf
+                            <button  type="submit" class="btn btn-light btn-block mb-2 w-100">
+                                <i class="fas fa-sign-out-alt"></i> Logout
+                            </button>
+                        </form>
+                    </li>
+                    
+                    <!-- Dashboard Link -->
+                    <li>
+                        <a href="{{ route('dashboards.show', ['beranda']) }}" 
+                        class="btn btn-light btn-block mb-2 w-100 {{ Request::get('page') === 'beranda' ? 'active' : '' }}">
+                            <i class="fas fa-home" style="margin-right: 20px;"></i> Dashboard
                         </a>
                     </li>
+
+                    <!-- Kesehatan Dropdown -->
                     <li>
-                        <a href="{{ route('dashboards.show', ['page' => 'index']) }}" class="btn btn-light btn-block mb-2 w-100 active">
-                            <i class="fas fa-home"></i> Dashboard
-                        </a>
-                    </li>
-                    <li>
-                        <a href="#" class="btn btn-light btn-block mb-1 w-100" data-bs-toggle="collapse" data-bs-target="#healthDropdown" aria-expanded="false">
-                            <i class="fas fa-caret-down"></i> Kesehatan
+                        <a href="#" 
+                        class="btn btn-light btn-block mb-1 w-100 d-flex justify-content-between align-items-center" 
+                        data-bs-toggle="collapse" data-bs-target="#healthDropdown" aria-expanded="false">
+                            <span><i class="fas fa-heartbeat" style="margin-right: 15px;"></i> Kesehatan</span>
+                            <i class="fas fa-chevron-down"></i>
                         </a>
                         <ul id="healthDropdown" class="list-unstyled collapse ps-3">
                             <li>
-                                <a href="{{ route('dashboards.show', ['page' => 'absensi']) }}" class="btn btn-light btn-block mb-2 w-100">Absensi Kesehatan</a>
+                                <a class="btn btn-light btn-block mb-2 w-100 {{ Request::get('page') === 'absensi' ? 'active' : '' }}" href="{{ route('dashboards.show', ['absensi']) }}">
+                                Absensi Kesehatan
+                                </a>
                             </li>
                             <li>
-                                <a href="{{ route('dashboards.show', ['page' => 'Rekap']) }}" class="btn btn-light btn-block mb-2 w-100">Rekap Kehadiran</a>
+                                <a class="btn btn-light btn-block mb-2 w-100 {{ Request::get('page') == 'Rekap' ? 'active' : '' }}" href="{{ route('dashboards.show', ['Rekap']) }}">
+                                Rekap Kehadiran
+                                </a>
                             </li>
                             <li>
-                                <a href="{{ route('dashboards.show', ['page' => 'resume']) }}" class="btn btn-light btn-block mb-2 w-100">Resume</a>
+                                <a class="btn btn-light btn-block mb-2 w-100 {{ Request::get('page') == 'resume' ? 'active' : '' }}" href="{{ route('dashboards.show', ['resume']) }}">
+                                Resume
+                                </a>
                             </li>
                         </ul>
                     </li>

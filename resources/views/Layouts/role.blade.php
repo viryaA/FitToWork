@@ -90,7 +90,14 @@
             <nav class="col-md-2 sidebar" id="sidebarMenu">
               <ul class="list-unstyled">
                 <li><a href="#"><i class="fas fa-key me-2"></i> Ubah Kata Sandi</a></li>
-                <li><a href="#"><i class="fas fa-sign-out-alt me-2"></i> Logout</a></li>
+                <li>
+                    <form action="{{ route('logout') }}" method="POST" class="w-100">
+                        @csrf
+                        <button type="submit" class="btn btn-light btn-block mb-2 w-100">
+                            <i class="fas fa-sign-out-alt"></i> Logout
+                        </button>
+                    </form>
+                </li>
               </ul>
             </nav>
 
