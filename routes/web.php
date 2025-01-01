@@ -13,3 +13,8 @@ Route::get('/login', [LoginController::class, 'showLoginForm'])->name('login.for
 Route::post('/login', [LoginController::class, 'processLogin'])->name('login.submit');
 
 Route::post('/logout', [LoginController::class, 'logout'])->name('logout');
+
+use App\Http\Controllers\KuisionerController;
+
+Route::get('/dynamic-form', [KuisionerController::class, 'showForm'])->name('dynamic_form');
+Route::post('/save-form', [KuisionerController::class, 'saveForm'])->name('save_form');

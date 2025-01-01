@@ -1,4 +1,4 @@
-<!-- resources/views/form.blade.php -->
+    <!-- resources/views/form.blade.php -->
 @extends('layouts.app')
 
 @section('title', 'Form Absensi Kesehatan')
