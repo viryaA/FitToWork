@@ -22,6 +22,7 @@ document.getElementById('addQuestionBtn').addEventListener('click', function() {
 
     const answerTypeSelect = document.createElement('select');
     answerTypeSelect.classList.add('mt-2', 'shadow', 'appearance-none', 'border', 'rounded', 'w-full', 'py-2', 'px-3', 'text-gray-700', 'leading-tight', 'focus:outline-none', 'focus:shadow-outline', 'answer-type-select');
+    answerTypeSelect.setAttribute('required', '');
     answerTypeSelect.innerHTML = `
         <option selected>Select answer type</option>
         <option value="1">Short Answer</option>
