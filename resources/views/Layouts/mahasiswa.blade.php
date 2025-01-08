@@ -11,7 +11,7 @@
             margin: 0;
         }
         .sidebar {
-            background-color: #f8f9fa;
+            background-color:rgb(255, 255, 255);
             height: calc(100vh - 70px);
             position: fixed;
             top: 70px;
@@ -28,7 +28,7 @@
             color: #343a40;
         }
         .sidebar a:hover {
-            background-color: #e2e6ea;
+            background-color:rgb(255, 255, 255);
         }
         .sidebar a.active {
             background-color: #007bff;
@@ -121,7 +121,7 @@
                     
                     <!-- Dashboard Link -->
                     <li>
-                        <a href="{{ route('dashboards.show', ['beranda']) }}" 
+                        <a href="{{ route('mahasiswas.show', ['beranda']) }}" 
                         class="btn btn-light btn-block mb-2 w-100 {{ Request::get('page') === 'beranda' ? 'active' : '' }}">
                             <i class="fas fa-home" style="margin-right: 20px;"></i> Dashboard
                         </a>
@@ -137,20 +137,21 @@
                         </a>
                         <ul id="healthDropdown" class="list-unstyled collapse ps-3">
                             <li>
-                                <a class="btn btn-light btn-block mb-2 w-100 {{ Request::get('page') === 'absensi' ? 'active' : '' }}" href="{{ route('dashboards.show', ['absensi']) }}">
+                                <a class="btn btn-light btn-block mb-2 w-100 {{ Request::get('page') === 'absensi' ? 'active' : '' }}" href="{{ route('mahasiswas.show', ['absensi']) }}">
                                 Absensi Kesehatan
                                 </a>
                             </li>
                             <li>
-                                <a class="btn btn-light btn-block mb-2 w-100 {{ Request::get('page') == 'Rekap' ? 'active' : '' }}" href="{{ route('dashboards.show', ['Rekap']) }}">
+                                <a class="btn btn-light btn-block mb-2 w-100 {{ Request::get('page') == 'rekap' ? 'active' : '' }}" href="{{ route('mahasiswas.show', ['rekap']) }}">
                                 Rekap Kehadiran
                                 </a>
                             </li>
                             <li>
-                                <a class="btn btn-light btn-block mb-2 w-100 {{ Request::get('page') == 'resume' ? 'active' : '' }}" href="{{ route('dashboards.show', ['resume']) }}">
+                                <a class="btn btn-light btn-block mb-2 w-100 {{ Request::get('page') == 'resume' ? 'active' : '' }}" href="{{ route('mahasiswas.show', ['resume']) }}">
                                 Resume
                                 </a>
                             </li>
+                            
                         </ul>
                     </li>
                 </ul>

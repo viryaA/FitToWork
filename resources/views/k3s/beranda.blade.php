@@ -1,5 +1,5 @@
 <!-- resources/views/form.blade.php -->
-@extends('layouts.app')
+@extends('layouts.ukk')
 
 @section('title', 'Resume Absensi Kesehatan')
 @section('style')
@@ -11,8 +11,8 @@
             vertical-align: middle;
         }
         .table th {
-            background-color: #f8f9fa;
-        }
+            background-color:rgb(255, 255, 255);
+        } 
         .table td a {
             color: #007bff;
             text-decoration: none;
@@ -31,7 +31,7 @@
             color: #000;
         }
         .divider {
-            border-top: 1px solid #dee2e6;
+            border-top: 1px solidrgb(255, 255, 255);
             margin-top: 0.5rem;
             margin-bottom: 1rem;
         }

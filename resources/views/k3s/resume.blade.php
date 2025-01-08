@@ -1,5 +1,5 @@
 <!-- resources/views/form.blade.php -->
-@extends('layouts.app')
+@extends('layouts.mahasiswa')
 
 @section('title', 'Resume Absensi Kesehatan')
 @section('style')
@@ -11,7 +11,7 @@
             vertical-align: middle;
         }
         .table th {
-            background-color: #f8f9fa;
+            background-color:rgb(255, 255, 255);
         }
         .table td a {
             color: #007bff;
@@ -31,12 +31,12 @@
             color: #000;
         }
         .divider {
-            border-top: 1px solid #dee2e6;
+            border-top: 1px solidrgb(255, 255, 255);
             margin-top: 0.5rem;
             margin-bottom: 1rem;
         }
         .table-striped tbody tr:nth-of-type(even) {
-            background-color: #f8f9fa;
+            background-color:rgb(255, 255, 255);
         }
     </style>
 @endsection
@@ -59,20 +59,35 @@
                 </tr>
             </thead>
             <tbody>
-                <tr>
+            <tr>
                     <td>Selasa, 19 November 2024</td>
                     <td><a href="#">Ini surat keterangan sak</a></td>
-                    <td class="text-center"><a href="#"><i class="fas fa-download"></i></a></td>
+                    <td class="text-center">
+                        <!-- Ganti URL dengan lokasi file yang sesuai -->
+                        <a href="{{ asset('storage/surat_keterangan.pdf') }}" download>
+                            <i class="fas fa-download"></i>
+                        </a>
+                    </td>
                 </tr>
                 <tr>
                     <td>Selasa, 26 November 2024</td>
                     <td><a href="#">Ini surat keterangan dokter kamu yaa, jangan lupa minum obatnya</a></td>
-                    <td class="text-center"><a href="#"><i class="fas fa-download"></i></a></td>
+                    <td class="text-center">
+                        <!-- Ganti URL dengan lokasi file yang sesuai -->
+                        <a href="{{ asset('storage/surat_keterangan.pdf') }}" download>
+                            <i class="fas fa-download"></i>
+                        </a>
+                    </td>
                 </tr>
                 <tr>
                     <td>Kamis, 28 November 2024</td>
                     <td><a href="#">Surat Kesehatan dokter, segera dirujuk ke rumah sakit terdekat</a></td>
-                    <td class="text-center"><a href="#"><i class="fas fa-download"></i></a></td>
+                    <td class="text-center">
+                        <!-- Ganti URL dengan lokasi file yang sesuai -->
+                        <a href="{{ asset('storage/surat_keterangan.pdf') }}" download>
+                            <i class="fas fa-download"></i>
+                        </a>
+                    </td>
                 </tr>
             </tbody>
         </table>
