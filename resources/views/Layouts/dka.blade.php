@@ -3,9 +3,6 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>@yield('title', 'My Laravel App')</title>
-    <script src="https://cdn.tailwindcss.com"></script>
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css">
-    <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@400;500;700&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/css/bootstrap.min.css" rel="stylesheet">
     <style>
@@ -14,7 +11,7 @@
             margin: 0;
         }
         .sidebar {
-            background-color: #f8f9fa;
+            background-color:rgb(255, 255, 255);
             height: calc(100vh - 70px);
             position: fixed;
             top: 70px;
@@ -31,7 +28,7 @@
             color: #343a40;
         }
         .sidebar a:hover {
-            background-color: #e2e6ea;
+            background-color:rgb(255, 255, 255);
         }
         .sidebar a.active {
             background-color: #007bff;
@@ -77,7 +74,7 @@
             <div class="d-flex justify-content-end align-items-center">
                 <div class="text-black text-end">
                     <p class="m-0">
-                        <strong>ALFIA FAUZIAH (MAHASISWA)</strong><br>
+                        <strong>ALFIA FAUZIAH (DKA)</strong><br>
                         <small>Login terakhir: 15 Desember 2024, 00:02 WIB</small>
                     </p>
                 </div>
@@ -124,7 +121,7 @@
                     
                     <!-- Dashboard Link -->
                     <li>
-                        <a href="{{ route('dashboards.show', ['beranda']) }}" 
+                        <a href="{{ route('dkas.show', ['beranda']) }}" 
                         class="btn btn-light btn-block mb-2 w-100 {{ Request::get('page') === 'beranda' ? 'active' : '' }}">
                             <i class="fas fa-home" style="margin-right: 20px;"></i> Dashboard
                         </a>
@@ -140,18 +137,35 @@
                         </a>
                         <ul id="healthDropdown" class="list-unstyled collapse ps-3">
                             <li>
-                                <a class="btn btn-light btn-block mb-2 w-100 {{ Request::get('page') === 'absensi' ? 'active' : '' }}" href="{{ route('dashboards.show', ['absensi']) }}">
+                                <a class="btn btn-light btn-block mb-2 w-100 {{ Request::get('page') === 'absensi' ? 'active' : '' }}" href="{{ route('dkas.show', ['absensi']) }}">
                                 Absensi Kesehatan
                                 </a>
                             </li>
                             <li>
-                                <a class="btn btn-light btn-block mb-2 w-100 {{ Request::get('page') == 'Rekap' ? 'active' : '' }}" href="{{ route('dashboards.show', ['Rekap']) }}">
+                                <a class="btn btn-light btn-block mb-2 w-100 {{ Request::get('page') == 'rekap' ? 'active' : '' }}" href="{{ route('dkas.show', ['rekap']) }}">
                                 Rekap Kehadiran
                                 </a>
                             </li>
                             <li>
-                                <a class="btn btn-light btn-block mb-2 w-100 {{ Request::get('page') == 'resume' ? 'active' : '' }}" href="{{ route('dashboards.show', ['resume']) }}">
-                                Resume
+                                <a class="btn btn-light btn-block mb-2 w-100 {{ Request::get('page') == 'resume' ? 'active' : '' }}" href="{{ route('dkas.show', ['resume']) }}">
+                                Resume 
+                                </a>
+                            </li>
+                        </ul>
+                    </li>
+
+                    <!-- Laporan Dropdown -->
+                    <li>
+                        <a href="#" 
+                        class="btn btn-light btn-block mb-1 w-100 d-flex justify-content-between align-items-center" 
+                        data-bs-toggle="collapse" data-bs-target="#kecelakaanDropdown" aria-expanded="false">
+                            <span><i class="fas fa-heartbeat" style="margin-right: 15px;"></i> Laporan</span>
+                            <i class="fas fa-chevron-down"></i>
+                        </a>
+                        <ul id="kecelakaanDropdown" class="list-unstyled collapse ps-3">
+                            <li>
+                                <a class="btn btn-light btn-block mb-2 w-100 {{ Request::get('page') === 'laporan_kecelakaan' ? 'active' : '' }}" href="{{ route('dkas.show', ['laporan_kecelakaan']) }}">
+                                Laporan Kecelakaan
                                 </a>
                             </li>
                         </ul>
@@ -173,6 +187,5 @@
             document.getElementById('sidebarMenu').classList.toggle('show');
         });
     </script>
-    @yield('scripts')
 </body>
 </html>
