@@ -10,11 +10,12 @@ class ftw_ms_option extends Model
     use HasFactory;
 
     protected $primaryKey = 'opt_id';
+    public $timestamps = false;
 
-    protected $fillable = ['que_id', 'opt_text', 'opt_is_correct'];
+    protected $fillable = ['qur_id','que_id', 'opt_text', 'opt_is_correct'];
 
     public function question()
     {
-        return $this->belongsTo(Question::class, 'que_id');
+        return $this->belongsTo(ftw_ms_question::class, 'que_id');
     }
 }

@@ -10,11 +10,11 @@ class ftw_ms_questionnaire extends Model
     use HasFactory;
 
     protected $primaryKey = 'qur_id';
-
-    protected $fillable = ['qur_title', 'qur_description'];
+    public $timestamps = false;
+    protected $fillable = ['qur_title', 'qur_description','qur_created_by'];
 
     public function questions()
     {
-        return $this->hasMany(Question::class, 'qur_id');
+        return $this->hasMany(ftw_ms_question::class, 'qur_id');
     }
 }

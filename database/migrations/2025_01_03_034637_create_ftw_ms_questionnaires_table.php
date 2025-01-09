@@ -15,7 +15,10 @@ return new class extends Migration
             $table->id('qur_id');
             $table->string('qur_title', 255);
             $table->text('qur_description')->nullable();
-            $table->timestamp('qur_created_at')->useCurrent();
+            $table->timestamp('qur_creation_date')->useCurrent();
+            $table->string('qur_created_by', 255)->nullable();
+            $table->timestamp('qur_last_update_date')->useCurrent();
+            $table->string('qur_last_updated_by', 255)->nullable();
         });
     }
 

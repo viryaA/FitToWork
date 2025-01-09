@@ -53,16 +53,18 @@
     questionInput.required = true;
 
     const answerTypeSelect = document.createElement('select');
+    answerTypeSelect.id = `answerType[${questionCount}]`;
+    answerTypeSelect.name = `answerType[${questionCount}]`;
     answerTypeSelect.classList.add('mt-2', 'shadow', 'appearance-none', 'border', 'rounded', 'w-full', 'py-2', 'px-3', 'text-gray-700', 'leading-tight', 'focus:outline-none', 'focus:shadow-outline', 'answer-type-select');
     answerTypeSelect.innerHTML = `
         <option disabled selected>Select answer type</option>
-        <option value="1">Short Answer</option>
-        <option value="2">Paragraph</option>
-        <option value="3">Multiple Choice</option>
-        <option value="4">Checkboxes</option>
-        <option value="5">Dropdown</option>
-        <option value="6">Radio Button</option>
-        <option value="7">Time</option>
+        <option value="Short Answer">Short Answer</option>
+        <option value="Paragraph">Paragraph</option>
+        <option value="Multiple Choice">Multiple Choice</option>
+        <option value="Checkboxes">Checkboxes</option>
+        <option value="Dropdown">Dropdown</option>
+        <option value="Radio Button">Radio Button</option>
+        <option value="Time">Time</option>
     `;
 
     const pointsInput = document.createElement('input');
@@ -108,16 +110,19 @@
         const optionWrapper = document.createElement('div');
         optionWrapper.classList.add('flex', 'items-center', 'mt-2');
 
+        const optionIndex = optionsWrapper.children.length;
+
         const optionInput = document.createElement('input');
         optionInput.type = 'text';
+        optionInput.name = `options[${questionCount}][${optionIndex}]`; // Assign name attribute
         optionInput.classList.add('shadow', 'appearance-none', 'border', 'rounded', 'w-full', 'py-2', 'px-3', 'text-gray-700', 'leading-tight', 'focus:outline-none', 'focus:shadow-outline');
         optionInput.placeholder = 'Enter option';
         optionInput.required = true;
 
         const trueOptionCheckbox = document.createElement('input');
         trueOptionCheckbox.type = 'checkbox';
+        trueOptionCheckbox.name = `correctOption[${questionCount}][${optionIndex}]`; // Assign name attribute for "true" checkbox
         trueOptionCheckbox.classList.add('ml-2', 'form-checkbox');
-        trueOptionCheckbox.id = `trueOption${questionCount}-${optionsWrapper.children.length + 1}`;
 
         const trueOptionLabel = document.createElement('label');
         trueOptionLabel.classList.add('ml-1', 'text-gray-700', 'font-bold');
@@ -140,12 +145,18 @@
         });
     });
 
+
     optionsContainer.appendChild(optionsLabel);
     optionsContainer.appendChild(optionsWrapper);
 
     answerTypeSelect.addEventListener('change', function() {
         const selectedType = answerTypeSelect.value;
-        if (selectedType === '3' || selectedType === '4' || selectedType === '5' || selectedType === '6') {
+        if (
+            selectedType === 'Multiple Choice' ||
+            selectedType === 'Checkboxes' ||
+            selectedType === 'Dropdown' ||
+            selectedType === 'Radio Button'
+        ) {
             optionsContainer.style.display = 'block'; // Show options
         } else {
             optionsContainer.style.display = 'none'; // Hide options

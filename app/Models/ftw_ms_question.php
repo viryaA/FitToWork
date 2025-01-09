@@ -10,16 +10,17 @@ class ftw_ms_question extends Model
     use HasFactory;
 
     protected $primaryKey = 'que_id';
+    public $timestamps = false;
 
     protected $fillable = ['qur_id', 'que_text', 'que_type', 'que_required', 'que_points'];
 
     public function options()
     {
-        return $this->hasMany(Option::class, 'que_id');
+        return $this->hasMany(ftw_ms_option::class, 'que_id');
     }
 
     public function questionnaire()
     {
-        return $this->belongsTo(Questionnaire::class, 'qur_id');
+        return $this->belongsTo(ftw_ms_questionnaire::class, 'qur_id');
     }
 }
