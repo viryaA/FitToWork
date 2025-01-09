@@ -2,16 +2,18 @@
 
 namespace App\Models;
 
-use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
+use Illuminate\Database\Eloquent\Model;
+
 class ftw_ms_role extends Model
 {
     use HasFactory;
 
-    protected $table = 'ftw_ms_roles';
-    protected $primaryKey = 'rol_id';
-    public $incrementing = false;
-    protected $keyType = 'char';
+    /**
+     * 
+     * 
+     * @var array
+     */
 
     protected $fillable = [
         'rol_id',

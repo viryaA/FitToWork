@@ -35,13 +35,26 @@ class LoginController extends Controller
         // }
 
         // Dummy check for username and password
-        if ($request->username === 'admin' && $request->password === 'password') {
+        if ($request->username === 'mahasiswa' && $request->password === 'password') {
             // Store user information in the session or authenticate
             $request->session()->put('user', ['username' => $request->username]);
 
             // Redirect to dashboard
-            return redirect()->route('dashboards.show', ['page' => 'index']);
-        } else {
+            return redirect()->route('mahasiswas.show', ['page' => 'index']);
+
+        } else if ($request->username === 'ukk' && $request->password === 'password') {
+            // Store user information in the session or authenticate
+            $request->session()->put('user', ['username' => $request->username]);
+
+            // Redirect to dashboard
+            return redirect()->route('ukks.show', ['page' => 'index']);
+        }else if ($request->username === 'k3' && $request->password === 'password') {
+            // Store user information in the session or authenticate
+            $request->session()->put('user', ['username' => $request->username]);
+
+            // Redirect to dashboard
+            return redirect()->route('k3s.show', ['page' => 'index']);
+        }else {
             // Return with error if credentials are invalid
             return back()->withErrors(['login' => 'Invalid username or password.'])->withInput();
         }

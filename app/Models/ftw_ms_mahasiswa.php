@@ -2,17 +2,18 @@
 
 namespace App\Models;
 
-use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
+use Illuminate\Database\Eloquent\Model;
 
 class ftw_ms_mahasiswa extends Model
 {
     use HasFactory;
 
-    protected $table = 'ftw_ms_mahasiswas';
-    protected $primaryKey = 'mhs_id';
-    public $incrementing = false;
-    protected $keyType = 'char';
+    /**
+     * 
+     * 
+     * @var array
+     */
 
     protected $fillable = [
         'mhs_id',
@@ -25,4 +26,5 @@ class ftw_ms_mahasiswa extends Model
         'mhs_email',
         'mhs_angkatan',
     ];
+    
 }
