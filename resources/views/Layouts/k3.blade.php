@@ -147,13 +147,25 @@
                                 </a>
                             </li>
                             <li>
-                                <a class="btn btn-light btn-block mb-2 w-100 {{ Request::get('page') == 'resume_mahasiswa' ? 'active' : '' }}" href="{{ route('k3s.show', ['resume_mahasiswa']) }}">
-                                Resume Mahasiswa
+                                <a class="btn btn-light btn-block mb-2 w-100 {{ Request::get('page') == 'resume' ? 'active' : '' }}" href="{{ route('k3s.show', ['resume']) }}">
+                                Resume 
                                 </a>
                             </li>
+                        </ul>
+                    </li>
+
+                    <!-- Laporan Dropdown -->
+                    <li>
+                        <a href="#" 
+                        class="btn btn-light btn-block mb-1 w-100 d-flex justify-content-between align-items-center" 
+                        data-bs-toggle="collapse" data-bs-target="#kecelakaanDropdown" aria-expanded="false">
+                            <span><i class="fas fa-heartbeat" style="margin-right: 15px;"></i> Laporan</span>
+                            <i class="fas fa-chevron-down"></i>
+                        </a>
+                        <ul id="kecelakaanDropdown" class="list-unstyled collapse ps-3">
                             <li>
-                                <a class="btn btn-light btn-block mb-2 w-100 {{ Request::get('page') == 'resume_karyawan' ? 'active' : '' }}" href="{{ route('k3s.show', ['resume_karyawan']) }}">
-                                Resume Karyawan
+                                <a class="btn btn-light btn-block mb-2 w-100 {{ Request::get('page') === 'laporan_kecelakaan' ? 'active' : '' }}" href="{{ route('k3s.show', ['laporan_kecelakaan']) }}">
+                                Laporan Kecelakaan
                                 </a>
                             </li>
                         </ul>

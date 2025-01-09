@@ -1,5 +1,5 @@
 <!-- resources/views/form.blade.php -->
-@extends('layouts.mahasiswa')
+@extends('layouts.k3')
 
 @section('title', 'Resume Absensi Kesehatan')
 @section('style')

@@ -1,6 +1,6 @@
 @extends('layouts.role')
 
-@section('title', 'Ukk')
+@section('title', 'K3')
 
 @section('content')
 <div class="breadcrumb">
@@ -11,7 +11,7 @@
     <div class="card" id="fitToWorkCard">
       <h2>Fit to Work</h2>
       <div class="dropdown-content">
-      <a href="{{ route('ukks.show', ['page' => 'beranda']) }}">Login sebagai <strong>Ukk</strong></a>
+      <a href="{{ route('k3s.show', ['page' => 'beranda']) }}">Login sebagai <strong>K3</strong></a>
       </div>
     </div>
 @endsection

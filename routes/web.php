@@ -4,6 +4,7 @@ use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\AuthController;
 use App\Http\Controllers\MahasiswaController;
 use App\Http\Controllers\UkkController;
+use App\Http\Controllers\K3Controller;
 use App\Http\Controllers\LoginController;
 
 // // Dashboard Route with parameter 'page'
@@ -11,6 +12,9 @@ Route::get('mahasiswas/{page}', [MahasiswaController::class, 'show'])->name('mah
 
 // Dashboard Route with parameter 'page'
 Route::get('ukks/{page}', [UkkController::class, 'show'])->name('ukks.show');
+
+// Dashboard Route with parameter 'page'
+Route::get('k3s/{page}', [K3Controller::class, 'show'])->name('k3s.show');
 
 // Login Routes
 Route::get('/login', [LoginController::class, 'showLoginForm'])->name('login.form');

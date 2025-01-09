@@ -4,7 +4,7 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 
-class UKKController extends Controller
+class K3Controller extends Controller
 {
     public function show($page)
     {
