@@ -9,6 +9,9 @@ use App\Http\Controllers\GAController;
 use App\Http\Controllers\DKAController;
 use App\Http\Controllers\UPTController;
 use App\Http\Controllers\LoginController;
+Route::get('/', function () {
+    return redirect()->route('login.form');
+});
 
 // // Dashboard Route with parameter 'page'
 Route::get('mahasiswas/{page}', [MahasiswaController::class, 'show'])->name('mahasiswas.show');
@@ -31,4 +34,10 @@ Route::get('upts/{page}', [UPTController::class, 'show'])->name('upts.show');
 // Login Routes
 Route::get('/login', [LoginController::class, 'showLoginForm'])->name('login.form');
 Route::post('/login', [LoginController::class, 'processLogin'])->name('login.submit');
+
 Route::post('/logout', [LoginController::class, 'logout'])->name('logout');
+
+use App\Http\Controllers\KuisionerController;
+
+Route::get('form/create', [KuisionerController::class, 'create'])->name('form.create');
+Route::post('form/store', [KuisionerController::class, 'store'])->name('form.store');
