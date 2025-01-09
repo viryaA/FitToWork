@@ -12,16 +12,12 @@ return new class extends Migration
     public function up(): void
     {
         Schema::create('ftw_ms_users', function (Blueprint $table) {
-            $table->string('usr_ID', 50)->primary();
-            $table->char('rol_id', 5);
-            $table->string('usr_STATUS', 15);
-            $table->string('usr_created_by', 50);
-            $table->datetime('usr_created_date');
-            $table->timestamps();
-
-            $table->foreign('rol_id')->references('rol_id')->on('ftw_ms_roles');
+            $table->string('usr_ID', 50)->primary(); // PK
+            $table->char('rol_id', 5)->nullable();   // FK
+            $table->string('usr_STATUS', 15)->nullable();
+            $table->string('usr_created_by', 50)->nullable();
+            $table->dateTime('usr_created_date')->nullable();
         });
-
     }
 
     /**
