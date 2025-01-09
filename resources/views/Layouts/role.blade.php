@@ -11,7 +11,7 @@
             margin: 0;
         }
         .sidebar {
-            background-color: #f8f9fa;
+            background-color:rgb(255, 255, 255);
             height: calc(100vh - 70px);
             position: fixed;
             top: 70px;
@@ -28,7 +28,7 @@
             color: #343a40;
         }
         .sidebar a:hover {
-            background-color: #e2e6ea;
+            background-color:rgb(255, 255, 255);
         }
         .sidebar a.active {
             background-color: #007bff;

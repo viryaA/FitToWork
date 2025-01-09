@@ -1,5 +1,5 @@
 <!-- resources/views/form.blade.php -->
-@extends('layouts.app')
+@extends('layouts.upt')
 
 @section('title', 'Form Absensi Kesehatan')
 @section('style')
@@ -31,7 +31,7 @@
             <span class="mx-2">/</span>
             <span class="subheader">Kesehatan</span>
             <span class="mx-2">/</span>
-            <span class="subheader">Resume</span>
+            <span class="subheader">Absensi</span>
     </div>
     <div class="divider"></div>
     <div class="card mb-4">
@@ -64,19 +64,15 @@
                         <p id="nama">Alfia Fauziah</p>
                     </div>
                     <div class="form-group">
-                        <label for="nim">Nomor Induk Mahasiswa (NIM) <span class="required">*</span></label>
-                        <p id="nim">0320230028</p>
+                        <label for="bagian">Bagian <span class="required">*</span></label>
+                        <p id="bagian">Unit Pelaksana Teknis</p>
                     </div>
                 </div>
 
                 <div class="col-md-6">
                     <div class="form-group">
-                        <label for="tingkat">Tingkat <span class="required">*</span></label>
-                        <p id="tingkat">Tingkat 2</p>
-                    </div>
-                    <div class="form-group">
-                        <label for="prodi">Program Studi <span class="required">*</span></label>
-                        <p id="prodi">Manajemen Informatika</p>
+                        <label for="npk">Nomor Pokok Karyawan(NPK) <span class="required">*</span></label>
+                        <p id="npk">0320230028</p>
                     </div>
                 </div>
             </div>
@@ -88,7 +84,7 @@
                 <label for="tanggal">Tanggal <span class="required">*</span></label>
                 <p id="tanggal">{{ date('Y-m-d') }}</p>
             </div>
-    
+
             <!-- Sleep Time Inputs -->
             <div class="form-group mb-4">
                 <label for="tidurmalam">Pukul berapa Anda tidur tadi malam? <span class="required">*</span></label>
@@ -101,70 +97,88 @@
             </div>
     
             <!-- Physical Health Question -->
-            <div class="form-group mb-4">
-                <label for="sehatfisik">Apakah Anda merasa cukup sehat secara fisik untuk melakukan tugas pekerjaan Anda saat ini? <span class="required">*</span></label>
-                <div>
-                    <label>
-                        <input type="radio" name="sehatfisik" value="ya" required> Ya
-                    </label>
-                    <label>
-                        <input type="radio" name="sehatfisik" value="tidak" required> Tidak
-                    </label>
-                </div>
+        <div class="form-group mb-4">
+            <label for="sehatfisik">Apakah Anda merasa cukup sehat secara fisik untuk melakukan tugas pekerjaan Anda saat ini? <span class="required">*</span></label>
+            <div>
+                <label>
+                    <input type="radio" name="sehatfisik" value="ya" required> Ya
+                </label>
+                <label>
+                    <input type="radio" name="sehatfisik" value="tidak" required> Tidak
+                </label>
             </div>
-    
+        </div>
+
             <!-- Symptoms Question -->
+        <div class="form-group mb-4">
+            <label for="gejala">Apakah Anda mengalami salah satu dari gejala berikut dalam 7 hari terakhir? <span class="required">*</span></label>
+            <div>
+                <label>
+                    <input type="checkbox" name="gejala" value="demam"> Demam (≥37.5°C)
+                </label><br>
+                <label>
+                    <input type="checkbox" name="gejala" value="batuk"> Batuk
+                </label><br>
+                <label>
+                    <input type="checkbox" name="gejala" value="sesak-napas"> Sesak napas
+                </label><br>
+                <label>
+                    <input type="checkbox" name="gejala" value="sakit-tenggorokan"> Sakit tenggorokan
+                </label><br>
+                <label>
+                    <input type="checkbox" name="gejala" value="nyeri-tubuh"> Nyeri tubuh
+                </label><br>
+                <label>
+                    <input type="checkbox" name="gejala" value="kehilangan-indra"> Kehilangan indra perasa atau penciuman
+                </label><br>
+                <label>
+                    <input type="checkbox" name="gejala" value="diare"> Diare
+                </label><br>
+                <label>
+                    <input type="checkbox" name="gejala" value="mual-muntah"> Mual/Muntah
+                </label><br>
+                <label>
+                    <input type="checkbox" name="gejala" value="tidak-ada"> Tidak ada gejala di atas
+                </label>
+            </div>
+        </div>
+
+        <!-- Chronic Illness Question -->
             <div class="form-group mb-4">
-                <label for="gejala">Apakah Anda mengalami salah satu dari gejala berikut dalam 7 hari terakhir? <span class="required">*</span></label>
+                <label for="penyakit-kronis">Apakah Anda memiliki penyakit kronis (misalnya asma, diabetes, hipertensi) yang saat ini memengaruhi kemampuan Anda untuk bekerja? <span class="required">*</span></label>
                 <div>
                     <label>
-                        <input type="radio" name="gejala" value="ya" required onclick="toggleTextarea(true)"> Ya
+                        <input type="radio" name="penyakit-kronis" value="ya" required onclick="togglePenyakitKronis(true)"> Ya
                     </label>
                     <label>
-                        <input type="radio" name="gejala" value="tidak" required onclick="toggleTextarea(false)"> Tidak
+                        <input type="radio" name="penyakit-kronis" value="tidak" required onclick="togglePenyakitKronis(false)"> Tidak
                     </label>
                 </div>
             </div>
-    
-            <div id="textareaWrapper" style="display:none;">
-                <label for="penyakit">Jika Ya, penyakit apa yang Anda alami? <span class="required">*</span></label>
-                <textarea class="form-control" name="penyakit" id="penyakit" rows="4"></textarea>
+            <div id="penyakit-kronis-wrapper" style="display:none;">
+                <label for="penyakit-kronis-detail">Jika Ya, sebutkan:</label>
+                <textarea class="form-control" name="penyakit-kronis-detail" id="penyakit-kronis-detail" rows="4"></textarea>
             </div>
-    
-            <!-- Chronic Illness Question -->
-            <div class="form-group mb-4">
-                <label for="chronic-illness">Apakah Anda memiliki riwayat penyakit kronis? <span class="required">*</span></label>
-                <div>
-                    <label>
-                        <input type="radio" name="chronic-illness" value="ya" required onclick="toggleTextarea(true)"> Ya
-                    </label>
-                    <label>
-                        <input type="radio" name="chronic-illness" value="tidak" required onclick="toggleTextarea(false)"> Tidak
-                    </label>
-                </div>
-            </div>
-    
             <!-- Action Buttons -->
             <div class="form-group">
-                <button type="button" class="btn btn-secondary">Batal</button>
+                <button type="reset" class="btn btn-secondary">Batal</button>
                 <button type="submit" class="btn btn-primary">Kirim</button>
             </div>
         </div>
     </div>
-
 </div>
 
 @endsection
 
 @section('scripts')
-<script>
-    function toggleTextarea(show) {
-        const textareaWrapper = document.getElementById('textareaWrapper');
-        if (show) {
+    <script>
+        function toggleTextarea(show) {
+            const textareaWrapper = document.getElementById('textareaWrapper');
+            if (show) {
             textareaWrapper.style.display = 'block';
-        } else {
+            } else {
             textareaWrapper.style.display = 'none';
+            }
         }
-    }
-</script>
+    </script>
 @endsection
