@@ -1,5 +1,5 @@
 <!-- resources/views/form.blade.php -->
-@extends('layouts.k3')
+@extends('layouts.dka')
 
 @section('title', 'Form Absensi Kesehatan')
 @section('style')
@@ -65,7 +65,7 @@
                     </div>
                     <div class="form-group">
                         <label for="bagian">Bagian <span class="required">*</span></label>
-                        <p id="bagian">Unit Kesehatan Kampus</p>
+                        <p id="bagian">Departmen Kemahasiswaan dan Alumni</p>
                     </div>
                 </div>
 

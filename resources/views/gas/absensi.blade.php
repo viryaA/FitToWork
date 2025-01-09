@@ -1,5 +1,5 @@
 <!-- resources/views/form.blade.php -->
-@extends('layouts.k3')
+@extends('layouts.ga')
 
 @section('title', 'Form Absensi Kesehatan')
 @section('style')
@@ -61,18 +61,18 @@
                 <div class="col-md-6">
                     <div class="form-group">
                         <label for="nama">Nama <span class="required">*</span></label>
-                        <p id="nama">Alfia Fauziah</p>
+                        <p id="nama">Virya Yasa Santoso</p>
                     </div>
                     <div class="form-group">
                         <label for="bagian">Bagian <span class="required">*</span></label>
-                        <p id="bagian">Unit Kesehatan Kampus</p>
+                        <p id="bagian">General Advisor</p>
                     </div>
                 </div>
 
                 <div class="col-md-6">
                     <div class="form-group">
                         <label for="npk">Nomor Pokok Karyawan(NPK) <span class="required">*</span></label>
-                        <p id="npk">0320230104</p>
+                        <p id="npk">0320230119</p>
                     </div>
                 </div>
             </div>

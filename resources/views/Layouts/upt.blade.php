@@ -74,7 +74,7 @@
             <div class="d-flex justify-content-end align-items-center">
                 <div class="text-black text-end">
                     <p class="m-0">
-                        <strong>ALFIA FAUZIAH (K3)</strong><br>
+                        <strong>ALFIA FAUZIAH (UPT)</strong><br>
                         <small>Login terakhir: 15 Desember 2024, 00:02 WIB</small>
                     </p>
                 </div>
@@ -121,7 +121,7 @@
                     
                     <!-- Dashboard Link -->
                     <li>
-                        <a href="{{ route('k3s.show', ['beranda']) }}" 
+                        <a href="{{ route('upts.show', ['beranda']) }}" 
                         class="btn btn-light btn-block mb-2 w-100 {{ Request::get('page') === 'beranda' ? 'active' : '' }}">
                             <i class="fas fa-home" style="margin-right: 20px;"></i> Dashboard
                         </a>
@@ -137,17 +137,17 @@
                         </a>
                         <ul id="healthDropdown" class="list-unstyled collapse ps-3">
                             <li>
-                                <a class="btn btn-light btn-block mb-2 w-100 {{ Request::get('page') === 'absensi' ? 'active' : '' }}" href="{{ route('k3s.show', ['absensi']) }}">
+                                <a class="btn btn-light btn-block mb-2 w-100 {{ Request::get('page') === 'absensi' ? 'active' : '' }}" href="{{ route('upts.show', ['absensi']) }}">
                                 Absensi Kesehatan
                                 </a>
                             </li>
                             <li>
-                                <a class="btn btn-light btn-block mb-2 w-100 {{ Request::get('page') == 'rekap' ? 'active' : '' }}" href="{{ route('k3s.show', ['rekap']) }}">
+                                <a class="btn btn-light btn-block mb-2 w-100 {{ Request::get('page') == 'rekap' ? 'active' : '' }}" href="{{ route('upts.show', ['rekap']) }}">
                                 Rekap Kehadiran
                                 </a>
                             </li>
                             <li>
-                                <a class="btn btn-light btn-block mb-2 w-100 {{ Request::get('page') == 'resume' ? 'active' : '' }}" href="{{ route('k3s.show', ['resume']) }}">
+                                <a class="btn btn-light btn-block mb-2 w-100 {{ Request::get('page') == 'resume' ? 'active' : '' }}" href="{{ route('upts.show', ['resume']) }}">
                                 Resume 
                                 </a>
                             </li>
@@ -164,7 +164,7 @@
                         </a>
                         <ul id="kecelakaanDropdown" class="list-unstyled collapse ps-3">
                             <li>
-                                <a class="btn btn-light btn-block mb-2 w-100 {{ Request::get('page') === 'laporan_kecelakaan' ? 'active' : '' }}" href="{{ route('k3s.show', ['laporan_kecelakaan']) }}">
+                                <a class="btn btn-light btn-block mb-2 w-100 {{ Request::get('page') === 'laporan_kecelakaan' ? 'active' : '' }}" href="{{ route('upts.show', ['laporan_kecelakaan']) }}">
                                 Laporan Kecelakaan
                                 </a>
                             </li>

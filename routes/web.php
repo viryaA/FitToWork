@@ -7,6 +7,7 @@ use App\Http\Controllers\UkkController;
 use App\Http\Controllers\K3Controller;
 use App\Http\Controllers\GAController;
 use App\Http\Controllers\DKAController;
+use App\Http\Controllers\UPTController;
 use App\Http\Controllers\LoginController;
 
 // // Dashboard Route with parameter 'page'
@@ -19,10 +20,13 @@ Route::get('ukks/{page}', [UkkController::class, 'show'])->name('ukks.show');
 Route::get('k3s/{page}', [K3Controller::class, 'show'])->name('k3s.show');
 
 // Dashboard Route with parameter 'page'
-Route::get('gas/{page}', [K3Controller::class, 'show'])->name('gas.show');
+Route::get('gas/{page}', [GAController::class, 'show'])->name('gas.show');
 
 // Dashboard Route with parameter 'page'
-Route::get('dkas/{page}', [K3Controller::class, 'show'])->name('dkas.show');
+Route::get('dkas/{page}', [DKAController::class, 'show'])->name('dkas.show');
+
+// Dashboard Route with parameter 'page'
+Route::get('upts/{page}', [UPTController::class, 'show'])->name('upts.show');
 
 // Login Routes
 Route::get('/login', [LoginController::class, 'showLoginForm'])->name('login.form');

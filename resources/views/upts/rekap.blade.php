@@ -1,5 +1,5 @@
 <!-- resources/views/form.blade.php -->
-@extends('layouts.dka')
+@extends('layouts.upt')
 
 @section('title', 'Rekap Absensi Kesehatan')
 @section('style')

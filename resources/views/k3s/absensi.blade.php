@@ -61,18 +61,18 @@
                 <div class="col-md-6">
                     <div class="form-group">
                         <label for="nama">Nama <span class="required">*</span></label>
-                        <p id="nama">Alfia Fauziah</p>
+                        <p id="nama">Nur Rofiq Syuhada</p>
                     </div>
                     <div class="form-group">
                         <label for="bagian">Bagian <span class="required">*</span></label>
-                        <p id="bagian">Unit Kesehatan Kampus</p>
+                        <p id="bagian">Keselamatan dan Kesehatan Kerja</p>
                     </div>
                 </div>
 
                 <div class="col-md-6">
                     <div class="form-group">
                         <label for="npk">Nomor Pokok Karyawan(NPK) <span class="required">*</span></label>
-                        <p id="npk">0320230104</p>
+                        <p id="npk">0320230103</p>
                     </div>
                 </div>
             </div>
