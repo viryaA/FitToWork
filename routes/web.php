@@ -39,5 +39,10 @@ Route::post('/logout', [LoginController::class, 'logout'])->name('logout');
 
 use App\Http\Controllers\KuisionerController;
 
-Route::get('form/create', [KuisionerController::class, 'create'])->name('form.create');
-Route::post('form/store', [KuisionerController::class, 'store'])->name('form.store');
+// Route::get('form/create', [KuisionerController::class, 'create'])->name('form.create');
+// Route::post('form/store', [KuisionerController::class, 'store'])->name('form.store');
+// Route::get('form/', [KuisionerController::class, 'index'])->name('form.index');
+Route::resource('questionnaire', KuisionerController::class);
+Route::put('questionnaire/{questionnaire}', [KuisionerController::class, 'update'])->name('questionnaire.update');
+
+

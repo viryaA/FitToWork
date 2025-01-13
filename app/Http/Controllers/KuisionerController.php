@@ -6,17 +6,30 @@ use Illuminate\Support\Facades\Log;
 use App\Models\ftw_ms_questionnaire;
 use App\Models\ftw_ms_question;
 use App\Models\ftw_ms_option;
+use Illuminate\Support\Facades\DB;
+
 
 class KuisionerController extends Controller
 {
+    public function index()
+    {
+        $questionnaires = ftw_ms_questionnaire::with(['questions.options'])->get();
+        return view('Kuisioner.index', compact('questionnaires'));
+    }
     /**
      * Show the form to create a new questionnaire.
      */
     public function create()
     {
-        return view('Kuisioner.index');
+        return view('Kuisioner.create');
     }
-
+    public function edit($id)
+    {
+        
+        $questionnaire = ftw_ms_questionnaire::with('questions.options')->findOrFail($id);
+        Log::debug('Update method called with ID:', ['id' => $questionnaire ]);
+        return view('Kuisioner.update', compact('questionnaire'));
+    }
     /**
      * Store the form data (questionnaire and questions).
      */
@@ -70,7 +83,7 @@ class KuisionerController extends Controller
                             $option = ftw_ms_option::create([
                                 'que_id' => $question->que_id,
                                 'opt_text' => $optionText,
-                                'opt_is_correct' => isset($request->trueOption[$key][$optionKey]),
+                                'opt_is_correct' => isset($request->correctOption[$key][$optionKey]),
                             ]);
                             Log::debug('Created option:', [$option]);
                         }
@@ -82,6 +95,61 @@ class KuisionerController extends Controller
         } catch (\Exception $e) {
             Log::error('Error storing questionnaire:', ['error' => $e->getMessage()]);
             return redirect()->back()->withErrors(['error' => 'There was an error processing your request. Please try again.']);
+        }
+    }
+
+    public function update(Request $request, $id)
+    {
+        $data = $request->all(); // Validate this appropriately
+        
+        // Begin transaction
+        DB::beginTransaction();
+
+        try {
+            // Update the Questionnaire
+            $questionnaire = ftw_ms_questionnaire::findOrFail($id);
+            $questionnaire->update([
+                'qur_title' => $data['qur_title'],
+                'qur_description' => $data['qur_description'],
+                // 'qur_created_by' => $data['qur_created_by'],
+                'qur_created_by' => 'Admin',
+            ]);
+
+            // Update Questions
+            foreach ($data['questions'] as $questionData) {
+                $question = ftw_ms_question::updateOrCreate(
+                    ['que_id' => $questionData['que_id']], // Match by ID for existing questions
+                    [
+                        'qur_id' => $id,
+                        'que_text' => $questionData['que_text'],
+                        'que_type' => $questionData['que_type'],
+                        'que_required' => $questionData['que_required'],
+                        'que_points' => $questionData['que_points'],
+                    ]
+                );
+
+                // Update Options for each question
+                foreach ($questionData['options'] as $optionData) {
+                    ftw_ms_option::updateOrCreate(
+                        ['opt_id' => $optionData['opt_id']], // Match by ID for existing options
+                        [
+                            'que_id' => $question->que_id,
+                            'qur_id' => $id,
+                            'opt_text' => $optionData['opt_text'],
+                            'opt_is_correct' => $optionData['opt_is_correct'],
+                        ]
+                    );
+                }
+            }
+
+            // Commit transaction
+            DB::commit();
+
+            return response()->json(['message' => 'Questionnaire updated successfully.']);
+        } catch (\Exception $e) {
+            // Rollback transaction in case of an error
+            DB::rollBack();
+            return response()->json(['error' => $e->getMessage()], 500);
         }
     }
 
