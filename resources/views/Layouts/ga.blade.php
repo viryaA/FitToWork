@@ -159,13 +159,18 @@
                         <a href="#" 
                         class="btn btn-light btn-block mb-1 w-100 d-flex justify-content-between align-items-center" 
                         data-bs-toggle="collapse" data-bs-target="#kecelakaanDropdown" aria-expanded="false">
-                            <span><i class="fas fa-heartbeat" style="margin-right: 15px;"></i> Laporan</span>
+                            <span><i class="fas fa-file-alt" style="margin-right: 15px;"></i> Laporan</span>
                             <i class="fas fa-chevron-down"></i>
                         </a>
                         <ul id="kecelakaanDropdown" class="list-unstyled collapse ps-3">
                             <li>
-                                <a class="btn btn-light btn-block mb-2 w-100 {{ Request::get('page') === 'laporan_kecelakaan' ? 'active' : '' }}" href="{{ route('gas.show', ['laporan_kecelakaan']) }}">
-                                Laporan Kecelakaan
+                                <a class="btn btn-light btn-block mb-2 w-100 {{ Request::get('page') === 'laporan_mahasiswa' ? 'active' : '' }}" href="{{ route('gas.show', ['laporan_mahasiswa']) }}">
+                                Laporan Mahasiswa
+                                </a>
+                            </li>
+                            <li>
+                                <a class="btn btn-light btn-block mb-2 w-100 {{ Request::get('page') === 'laporan_karyawan' ? 'active' : '' }}" href="{{ route('gas.show', ['laporan_karyawan']) }}">
+                                Laporan Karyawan
                                 </a>
                             </li>
                         </ul>
