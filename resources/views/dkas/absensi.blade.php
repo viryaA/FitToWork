@@ -65,14 +65,14 @@
                     </div>
                     <div class="form-group">
                         <label for="bagian">Bagian <span class="required">*</span></label>
-                        <p id="bagian">Departmen Kemahasiswaan dan Alumni</p>
+                        <p id="bagian">Departemen Kemahasiswaan dan Alumni</p>
                     </div>
                 </div>
 
                 <div class="col-md-6">
                     <div class="form-group">
                         <label for="npk">Nomor Pokok Karyawan(NPK) <span class="required">*</span></label>
-                        <p id="npk">0320230104</p>
+                        <p id="npk">0320230028</p>
                     </div>
                 </div>
             </div>

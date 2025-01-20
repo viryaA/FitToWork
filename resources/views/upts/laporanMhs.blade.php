@@ -1,4 +1,4 @@
-@extends('layouts.ga')
+@extends('layouts.upt')
 
 @section('title', 'Laporan Kesehatan Mahasiswa')
 

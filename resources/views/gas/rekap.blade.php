@@ -12,7 +12,7 @@
         }
         .table th {
             background-color:rgb(255, 255, 255);
-        }
+        }   
         .table td a {
             color: #007bff;
             text-decoration: none;

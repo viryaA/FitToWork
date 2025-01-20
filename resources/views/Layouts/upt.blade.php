@@ -164,8 +164,8 @@
                         </a>
                         <ul id="kecelakaanDropdown" class="list-unstyled collapse ps-3">
                             <li>
-                                <a class="btn btn-light btn-block mb-2 w-100 {{ Request::get('page') === 'laporan_kecelakaan' ? 'active' : '' }}" href="{{ route('upts.show', ['laporan_kecelakaan']) }}">
-                                Laporan Kecelakaan
+                                <a class="btn btn-light btn-block mb-2 w-100 {{ Request::get('page') === 'laporanMhs' ? 'active' : '' }}" href="{{ route('upts.show', ['laporanMhs']) }}">
+                                Laporan Mahasiswa
                                 </a>
                             </li>
                         </ul>

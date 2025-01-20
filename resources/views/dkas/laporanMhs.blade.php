@@ -1,4 +1,4 @@
-@extends('layouts.ga')
+@extends('layouts.dka')
 
 @section('title', 'Laporan Kesehatan Mahasiswa')
 

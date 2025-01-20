@@ -11,7 +11,7 @@
     <div class="card" id="fitToWorkCard">
       <h2>Fit to Work</h2>
       <div class="dropdown-content">
-      <a href="{{ route('upts.show', ['page' => 'beranda']) }}">Login sebagai <strong>UPT</strong></a>
+      <a href="{{ route('upts.show', ['page' => 'beranda']) }}">Login sebagai <strong>Unit Pelaksana Teknis</strong></a>
       </div>
     </div>
 @endsection

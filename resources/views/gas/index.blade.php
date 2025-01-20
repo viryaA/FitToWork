@@ -11,7 +11,7 @@
     <div class="card" id="fitToWorkCard">
       <h2>Fit to Work</h2>
       <div class="dropdown-content">
-      <a href="{{ route('gas.show', ['page' => 'beranda']) }}">Login sebagai <strong>GA</strong></a>
+      <a href="{{ route('gas.show', ['page' => 'beranda']) }}">Login sebagai <strong>General Advisor</strong></a>
       </div>
     </div>
 @endsection

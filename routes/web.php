@@ -37,6 +37,7 @@ Route::post('/login', [LoginController::class, 'processLogin'])->name('login.sub
 
 Route::post('/logout', [LoginController::class, 'logout'])->name('logout');
 
+
 use App\Http\Controllers\KuisionerController;
 
 // Route::get('form/create', [KuisionerController::class, 'create'])->name('form.create');
@@ -44,5 +45,3 @@ use App\Http\Controllers\KuisionerController;
 // Route::get('form/', [KuisionerController::class, 'index'])->name('form.index');
 Route::resource('questionnaire', KuisionerController::class);
 Route::put('questionnaire/{questionnaire}', [KuisionerController::class, 'update'])->name('questionnaire.update');
-
-

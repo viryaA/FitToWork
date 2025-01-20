@@ -1,6 +1,6 @@
-@extends('layouts.ga')
+@extends('layouts.dka')
 
-@section('title', 'Laporan Kesehatan Mahasiswa')
+@section('title', 'Laporan Kesehatan Karyawan')
 
 @section('style')
     <style>
@@ -65,7 +65,7 @@
             <span class="mx-2">/</span>
             <span class="subheader">Laporan</span>
             <span class="mx-2">/</span>
-            <span class="subheader">Laporan Kesehatan Mahasiswa</span>
+            <span class="subheader">Laporan Kesehatan Karyawan</span>
         </div>
         <div class="divider"></div>
 
@@ -81,7 +81,7 @@
                 <tr>
                     <th>Tanggal Absensi</th>
                     <th>Nama</th>
-                    <th>Program Studi</th>
+                    <th>Bagian</th>
                     <th>Status Kesehatan</th>
                 </tr>
             </thead>
@@ -89,50 +89,50 @@
                 <!-- Data statis langsung dituliskan -->
                 <tr>
                     <td>Senin, 18 November 2024</td>
-                    <td>Naufal Luthfi Pramudya</td>
-                    <td>Manajemen Informatika</td>
+                    <td>Yuzmi Zakiya</td>
+                    <td>Unit Kesehatan Kampus</td>
                     <td class="text-success">Sehat</td>
                 </tr>
                 <tr>
                     <td>Senin, 18 November 2024</td>
-                    <td>Nur Rofiq Syuhada</td>
-                    <td>Manajemen Informatika</td>
+                    <td>Tiara Ratna Suminar</td>
+                    <td>DKA</td>
                     <td class="text-danger">Kurang Sehat</td>
                 </tr>
                 <tr>
                     <td>Senin, 18 November 2024</td>
-                    <td>Naurah Nazwa Febrianti</td>
-                    <td>Manajemen Informatika</td>
+                    <td>Marchell Pangaribuan</td>
+                    <td>DKA</td>
                     <td class="text-success">Sehat</td>
                 </tr>
                 <tr>
                     <td>Senin, 18 November 2024</td>
-                    <td>Alfia Fauziah</td>
-                    <td>Mekatronika</td>
+                    <td>Afif Ar Rifai</td>
+                    <td>DAAA</td>
                     <td class="text-success">Sehat</td>
                 </tr>
                 <tr>
                     <td>Senin, 18 November 2024</td>
-                    <td>Muhammad Hakim</td>
-                    <td>Mekatronika</td>
+                    <td>Halyda Syafira</td>
+                    <td>General Advisor</td>
                     <td class="text-success">Sehat</td>
                 </tr>
                 <tr>
                     <td>Senin, 18 November 2024</td>
-                    <td>Ridho Ramadhani</td>
-                    <td>Teknik Produksi dan Proses Manufaktur</td>
+                    <td>Rizky Pangestu</td>
+                    <td>General Advisor</td>
                     <td class="text-success">Sehat</td>
                 </tr>
                 <tr>
                     <td>Senin, 18 November 2024</td>
-                    <td>Furri Sukma Kelana</td>
-                    <td>Teknik Produksi dan Proses Manufaktur</td>
+                    <td>Sissy Caroline</td>
+                    <td>Dosen</td>
                     <td class="text-success">Sehat</td>
                 </tr>
                 <tr>
                     <td>Senin, 18 November 2024</td>
-                    <td>Muhammad Affan Hafidz</td>
-                    <td>Teknik Rekayasa Perangkat Lunak</td>
+                    <td>Muhammad Hammam</td>
+                    <td>Dosen</td>
                     <td class="text-danger">Kurang Sehat</td>
                 </tr>
             </tbody>

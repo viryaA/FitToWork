@@ -61,7 +61,7 @@
                 <div class="col-md-6">
                     <div class="form-group">
                         <label for="nama">Nama <span class="required">*</span></label>
-                        <p id="nama">Alfia Fauziah</p>
+                        <p id="nama">Naurah Nazwa Febrianti</p>
                     </div>
                     <div class="form-group">
                         <label for="bagian">Bagian <span class="required">*</span></label>

@@ -11,7 +11,7 @@
     <div class="card" id="fitToWorkCard">
       <h2>Fit to Work</h2>
       <div class="dropdown-content">
-      <a href="{{ route('k3s.show', ['page' => 'beranda']) }}">Login sebagai <strong>K3</strong></a>
+      <a href="{{ route('k3s.show', ['page' => 'beranda']) }}">Login sebagai <strong>Keselamatan dan Kesehatan Kerja</strong></a>
       </div>
     </div>
 @endsection
