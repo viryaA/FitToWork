@@ -1,24 +1,11 @@
 <!-- resources/views/form.blade.php -->
 @extends('layouts.ukk')
 
-@section('title', 'Resume Absensi Kesehatan')
+@section('title', 'Form Absensi Kesehatan')
 @section('style')
-    <style>
+<style>
         body {
             font-family: Arial, sans-serif;
-        }
-        .table th, .table td {
-            vertical-align: middle;
-        }
-        .table th {
-            background-color:rgb(255, 255, 255);
-        }
-        .table td a {
-            color: #007bff;
-            text-decoration: none;
-        }
-        .table td a:hover {
-            text-decoration: underline;
         }
         .header {
             font-size: 1.5rem;
@@ -31,75 +18,87 @@
             color: #000;
         }
         .divider {
-            border-top: 1px solidrgb(255, 255, 255);
+            border-top: 1px solid #dee2e6;
             margin-top: 0.5rem;
             margin-bottom: 1rem;
-        }
-        .table-striped tbody tr:nth-of-type(even) {
-            background-color:rgb(255, 255, 255);
         }
     </style>
 @endsection
 @section('content')
-    <div class="content mt-4">
-        <div class="d-flex align-items-center">
+<div class="content">
+    <div class="d-flex align-items-center">
             <span class="header">Fit to Work</span>
             <span class="mx-2">/</span>
             <span class="subheader">Kesehatan</span>
             <span class="mx-2">/</span>
-            <span class="subheader">Resume</span>
-        </div>
-        <div class="divider"></div>
-        <table class="table table-bordered table-striped">
-            <thead>
-                <tr>
-                    <th scope="col">Tanggal</th>
-                    <th scope="col">Keterangan</th>
-                    <th scope="col">Aksi</th>
-                </tr>
-            </thead>
-            <tbody>
-    <tr>
-        <td>Selasa, 19 November 2024</td>
-        <td><a href="#">Ini surat keterangan sak</a></td>
-        <td class="text-center" style="border: none;">
-            <!-- Ikon Upload dan Download -->
-            <a href="{{ asset('storage/surat_keterangan.pdf') }}" download style="color: #007bff; margin-right: 10px;">
-                <i class="fas fa-download"></i>
-            </a>
-            <a href="#" style="color: #007bff;">
-                <i class="fas fa-upload"></i>
-            </a>
-        </td>
-    </tr>
-    <tr>
-        <td>Selasa, 26 November 2024</td>
-        <td><a href="#">Ini surat keterangan dokter kamu yaa, jangan lupa minum obatnya</a></td>
-        <td class="text-center" style="border: none;">
-            <!-- Ikon Upload dan Download -->
-            <a href="{{ asset('storage/surat_keterangan.pdf') }}" download style="color: #007bff; margin-right: 10px;">
-                <i class="fas fa-download"></i>
-            </a>
-            <a href="#" style="color: #007bff;">
-                <i class="fas fa-upload"></i>
-            </a>
-        </td>
-    </tr>
-    <tr>
-        <td>Kamis, 28 November 2024</td>
-        <td><a href="#">Surat Kesehatan dokter, segera dirujuk ke rumah sakit terdekat</a></td>
-        <td class="text-center" style="border: none;">
-            <!-- Ikon Upload dan Download -->
-            <a href="{{ asset('storage/surat_keterangan.pdf') }}" download style="color: #007bff; margin-right: 10px;">
-                <i class="fas fa-download"></i>
-            </a>
-            <a href="#" style="color: #007bff;">
-                <i class="fas fa-upload"></i>
-            </a>
-        </td>
-    </tr>
-</tbody>
-        </table>
+            <span class="subheader">Resume Mahasiswa</span>
     </div>
+    <div class="divider"></div>
+    <div class="card mb-4">
+        <div class="card-header" style="background-color: #007bff; color: white;">
+            <i><strong>Mengirim Resume Ke Mahasiswa</strong></i>
+        </div>
+    </div>
+    <div class="card mb-4">
+        <div class="card-body">
+            <div class="row mb-4">
+            <div class="col-md-6">
+                <div class="form-group">
+                    <label for="programStudi">Program Studi <span class="required">*</span></label>
+                        <select id="programStudi" class="form-control" required>
+                            <option value="">-- Pilih Program Studi --</option>
+                            <option value="TI">Teknik Informatika</option>
+                            <option value="SI">Sistem Informasi</option>
+                            <option value="MI">Manajemen Informatika</option>
+                            <option value="TK">Teknik Komputer</option>
+                        </select>
+                </div>
+                <div class="form-group">
+                    <label for="namaMahasiswa">Nama Mahasiswa <span class="required">*</span></label>
+                    <textarea id="namaMahasiswa" class="form-control" rows="1" placeholder="Masukkan Nama Mahasiswa" required></textarea>
+                </div>
+            </div>
+                <div class="col-md-6">
+                    <div class="form-group">
+                        <label for="tingkat">Tingkat <span class="required">*</span></label>
+                        <textarea id="tingkat" class="form-control" rows="1" placeholder="Masukkan Tingkat Mahasiswa" required></textarea>
+                    </div>
+                    <div class="form-group">
+                        <label for="nim">NIM <span class="required">*</span></label>
+                        <textarea id="nim" class="form-control" rows="1" placeholder="Masukkan NIM Mahasiswa" required></textarea>
+                    </div>
+                </div>
+            </div>
+            <hr class="my-4">
+            <!-- Date Section -->
+            <div class="form-group mb-4">
+                <div class="row">
+                    <!-- Kolom Tanggal -->
+                    <div class="col-md-6">
+                        <label for="tanggal">Tanggal <span class="required">*</span></label>
+                        <p id="tanggal">{{ date('Y-m-d') }}</p>
+                    </div>
+                    <!-- Kolom Keterangan -->
+                    <div class="col-md-6">
+                        <label for="keterangan">Keterangan <span class="required">*</span></label>
+                        <textarea id="keterangan" class="form-control" rows="4" placeholder="Masukkan Keterangan Sakit" required></textarea>
+                    </div>
+                </div>
+                <!-- Kolom Dokumen -->
+                <div class="row mt-4">
+                    <div class="col-md-6">
+                        <label for="dokumen">Dokumen <span class="required">*</span></label>
+                        <input type="file" id="dokumen" class="form-control" accept=".pdf" required>
+                        <small class="form-text text-muted">Unggah file dalam format PDF. Maksimal ukuran 2 MB.</small>
+                    </div>
+                </div>
+            </div>
+            <!-- Tombol Kembali dan Simpan -->
+            <div class="form-group text-right">
+                <button type="button" class="btn btn-secondary">Kembali</button>
+                <button type="submit" class="btn btn-primary">Simpan</button>
+            </div>
+        </div>
+    </div>
+</div>
 @endsection
-

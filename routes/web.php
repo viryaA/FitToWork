@@ -1,5 +1,4 @@
 <?php
-
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\AuthController;
 use App\Http\Controllers\MahasiswaController;
@@ -9,6 +8,9 @@ use App\Http\Controllers\GAController;
 use App\Http\Controllers\DKAController;
 use App\Http\Controllers\UPTController;
 use App\Http\Controllers\LoginController;
+use App\Http\Controllers\FileUploadController;
+use App\Http\Controllers\KuisionerController;
+
 Route::get('/', function () {
     return redirect()->route('login.form');
 });
@@ -34,11 +36,7 @@ Route::get('upts/{page}', [UPTController::class, 'show'])->name('upts.show');
 // Login Routes
 Route::get('/login', [LoginController::class, 'showLoginForm'])->name('login.form');
 Route::post('/login', [LoginController::class, 'processLogin'])->name('login.submit');
-
 Route::post('/logout', [LoginController::class, 'logout'])->name('logout');
-
-use App\Http\Controllers\KuisionerController;
-
 // Route::get('form/create', [KuisionerController::class, 'create'])->name('form.create');
 // Route::post('form/store', [KuisionerController::class, 'store'])->name('form.store');
 // Route::get('form/', [KuisionerController::class, 'index'])->name('form.index');

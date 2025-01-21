@@ -68,7 +68,6 @@
                         <p id="bagian">Unit Kesehatan Kampus</p>
                     </div>
                 </div>
-
                 <div class="col-md-6">
                     <div class="form-group">
                         <label for="npk">Nomor Pokok Karyawan(NPK) <span class="required">*</span></label>
@@ -76,9 +75,7 @@
                     </div>
                 </div>
             </div>
-    
             <hr class="my-4">
-    
             <!-- Date Section -->
             <div class="form-group mb-4">
                 <label for="tanggal">Tanggal <span class="required">*</span></label>

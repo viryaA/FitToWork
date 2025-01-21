@@ -66,6 +66,12 @@ class LoginController extends Controller
 
             // Redirect to dashboard
             return redirect()->route('dkas.show', ['page' => 'index']);
+        }else if ($request->username === 'upt' && $request->password === 'password') {
+            // Store user information in the session or authenticate
+            $request->session()->put('user', ['username' => $request->username]);
+
+            // Redirect to dashboard
+            return redirect()->route('upts.show', ['page' => 'index']);
         }
         else {
             // Return with error if credentials are invalid
