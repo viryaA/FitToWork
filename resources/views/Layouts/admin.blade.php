@@ -1,12 +1,15 @@
+<!DOCTYPE html>
 <html lang="en">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>@yield('title', 'My Laravel App')</title>
-    <script src="https://cdn.tailwindcss.com"></script>
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css">
-    <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@400;500;700&display=swap" rel="stylesheet">
+    <!-- Include Tailwind CSS -->
+    <!-- Include Font Awesome -->
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+    <!-- Include Google Fonts -->
+    <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@400;500;700&display=swap" rel="stylesheet">
+    <!-- Include Bootstrap CSS -->
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/css/bootstrap.min.css" rel="stylesheet">
     <style>
         body, html {
@@ -82,7 +85,7 @@
                     </p>
                 </div>
                 <div class="d-md-none">
-                    <button class="btn btn-light" type="button" id="sidebarToggle">
+                    <button class="btn btn-light" type="button" id="sidebarToggle" aria-label="Toggle Sidebar">
                         <i class="fas fa-bars"></i>
                     </button>
                 </div>
@@ -116,7 +119,7 @@
                     <li>
                         <form action="{{ route('logout') }}" method="POST" class="w-100">
                             @csrf
-                            <button  type="submit" class="btn btn-light btn-block mb-2 w-100">
+                            <button type="submit" class="btn btn-light btn-block mb-2 w-100" aria-label="Logout">
                                 <i class="fas fa-sign-out-alt"></i> Logout
                             </button>
                         </form>
@@ -125,7 +128,7 @@
                     <!-- Dashboard Link -->
                     <li>
                         <a href="{{ route('mahasiswas.show', ['beranda']) }}" 
-                        class="btn btn-light btn-block mb-2 w-100 {{ Request::get('page') === 'beranda' ? 'active' : '' }}">
+                        class="btn btn-light btn-block mb-2 w-100 {{ Request::get('page') === 'beranda' ? 'active' : '' }}" aria-label="Dashboard">
                             <i class="fas fa-home" style="margin-right: 20px;"></i> Dashboard
                         </a>
                     </li>
@@ -134,27 +137,26 @@
                     <li>
                         <a href="#" 
                         class="btn btn-light btn-block mb-1 w-100 d-flex justify-content-between align-items-center" 
-                        data-bs-toggle="collapse" data-bs-target="#healthDropdown" aria-expanded="false">
+                        data-bs-toggle="collapse" data-bs-target="#healthDropdown" aria-expanded="false" aria-label="Kesehatan Dropdown">
                             <span><i class="fas fa-heartbeat" style="margin-right: 15px;"></i> Kesehatan</span>
                             <i class="fas fa-chevron-down"></i>
                         </a>
                         <ul id="healthDropdown" class="list-unstyled collapse ps-3">
                             <li>
-                                <a class="btn btn-light btn-block mb-2 w-100 {{ Request::get('page') === 'absensi' ? 'active' : '' }}" href="{{ route('mahasiswas.show', ['absensi']) }}">
-                                Absensi Kesehatan
+                                <a class="btn btn-light btn-block mb-2 w-100 {{ Request::get('page') === 'absensi' ? 'active' : '' }}" href="{{ route('mahasiswas.show', ['absensi']) }}" aria-label="Absensi Kesehatan">
+                                    Absensi Kesehatan
                                 </a>
                             </li>
                             <li>
-                                <a class="btn btn-light btn-block mb-2 w-100 {{ Request::get('page') == 'rekap' ? 'active' : '' }}" href="{{ route('mahasiswas.show', ['rekap']) }}">
-                                Rekap Kehadiran
+                                <a class="btn btn-light btn-block mb-2 w-100 {{ Request::get('page') == 'rekap' ? 'active' : '' }}" href="{{ route('mahasiswas.show', ['rekap']) }}" aria-label="Rekap Kehadiran">
+                                    Rekap Kehadiran
                                 </a>
                             </li>
                             <li>
-                                <a class="btn btn-light btn-block mb-2 w-100 {{ Request::get('page') == 'resume' ? 'active' : '' }}" href="{{ route('mahasiswas.show', ['resume']) }}">
-                                Resume
+                                <a class="btn btn-light btn-block mb-2 w-100 {{ Request::get('page') == 'resume' ? 'active' : '' }}" href="{{ route('mahasiswas.show', ['resume']) }}" aria-label="Resume">
+                                    Resume
                                 </a>
                             </li>
-                            
                         </ul>
                     </li>
                 </ul>
@@ -167,7 +169,7 @@
         </div>
     </div>
 
-    <!-- Bootstrap Bundle with Popper -->
+    <!-- Include Bootstrap JS -->
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/js/bootstrap.bundle.min.js"></script>
     <script>
         document.getElementById('sidebarToggle').addEventListener('click', function() {

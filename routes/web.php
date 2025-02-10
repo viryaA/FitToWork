@@ -44,5 +44,7 @@ use App\Http\Controllers\KuisionerController;
 // Route::get('form/', [KuisionerController::class, 'index'])->name('form.index');
 Route::resource('questionnaire', KuisionerController::class);
 Route::put('questionnaire/{questionnaire}', [KuisionerController::class, 'update'])->name('questionnaire.update');
+Route::get('questionnaire/show/{questionnaire}', [KuisionerController::class, 'show'])->name('questionnaire.show');
 
 
+Route::post('/questionnaire/{id}/submit', [KuisionerController::class, 'submit'])->name('questionnaire.submit');
