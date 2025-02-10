@@ -14,8 +14,8 @@ return new class extends Migration
         Schema::create('ftw_tr_responses', function (Blueprint $table) {
             $table->id('res_id');
             $table->foreignId('qur_id');
-            $table->string('res_responder_id', 255);
-            $table->char('res_type', 5);
+            $table->string('res_responder_id', 255)->nullable();
+            $table->char('res_type', 5)->nullable();
             $table->timestamp('res_submitted_at')->useCurrent();
         });
     }

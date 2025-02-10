@@ -1,7 +1,7 @@
 @extends('layouts.admin')
 @section('content')
     <div class="container mx-auto mt-10">
-        <div class="bg-purple-600 text-white p-6 rounded-t-lg">
+        <div class="bg-blue-600 text-white p-6 rounded-t-lg">
             <h1 class="text-2xl font-bold text-center">Create Your Form</h1>
         </div>
         <div class="bg-white p-6 rounded-b-lg shadow-lg">
@@ -19,8 +19,8 @@
                     <!-- Questions will be dynamically added here -->
                 </div>
                 <div class="flex justify-end mt-4">
-                    <button type="button" id="addQuestionBtn" class="bg-gray-500 text-white py-2 px-4 rounded hover:bg-gray-700 focus:outline-none focus:shadow-outline">Add Question</button>
-                    <button type="submit" class="bg-purple-600 text-white py-2 px-4 rounded ml-2 hover:bg-purple-800 focus:outline-none focus:shadow-outline">Save Form</button>
+                    <button type="button" id="addQuestionBtn" class="bg-gray-500 text-white font-bold py-2 px-4 rounded hover:bg-gray-700 focus:outline-none focus:shadow-outline">Add Question</button>
+                    <button type="submit" class="bg-blue-600 text-white font-bold py-2 px-4 rounded ml-2 hover:bg-blue-800 focus:outline-none focus:shadow-outline">Save Form</button>
                 </div>
             </form>
         </div>
@@ -214,4 +214,5 @@ document.querySelector('form').addEventListener('submit', function(event) {
 
 
 </script>
+<script src="https://cdn.tailwindcss.com"></script>
 @endsection

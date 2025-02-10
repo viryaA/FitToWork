@@ -25,7 +25,6 @@
                 <th>#</th>
                 <th>Title</th>
                 <th>Description</th>
-                <th>Created By</th>
                 <th>Questions</th>
                 <th>Actions</th>
             </tr>
@@ -36,10 +35,9 @@
                     <td>{{ $loop->iteration }}</td>
                     <td>{{ $questionnaire->qur_title }}</td>
                     <td>{{ $questionnaire->qur_description }}</td>
-                    <td>{{ $questionnaire->qur_created_by }}</td>
                     <td>
                         @if ($questionnaire->questions->isNotEmpty())
-                            <button class="btn btn-info btn-sm" data-bs-toggle="collapse" data-bs-target="#questions-{{ $questionnaire->qur_id }}">
+                            <button class="btn btn-info btn-sm" data-bs-toggle="collapse" data-bs-target="#questions-{{ $questionnaire->qur_id }}" aria-expanded="false" aria-controls="questions-{{ $questionnaire->qur_id }}">
                                 View Questions
                             </button>
 
@@ -86,4 +84,7 @@
         </tbody>
     </table>
 </div>
+@endsection
+
+@section('scripts')
 @endsection
