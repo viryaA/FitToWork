@@ -127,7 +127,7 @@
                     
                     <!-- Dashboard Link -->
                     <li>
-                        <a href="{{ route('mahasiswas.show', ['beranda']) }}" 
+                        <a href="{{ route('admin.show', ['beranda']) }}" 
                         class="btn btn-light btn-block mb-2 w-100 {{ Request::get('page') === 'beranda' ? 'active' : '' }}" aria-label="Dashboard">
                             <i class="fas fa-home" style="margin-right: 20px;"></i> Dashboard
                         </a>
@@ -143,18 +143,8 @@
                         </a>
                         <ul id="healthDropdown" class="list-unstyled collapse ps-3">
                             <li>
-                                <a class="btn btn-light btn-block mb-2 w-100 {{ Request::get('page') === 'absensi' ? 'active' : '' }}" href="{{ route('mahasiswas.show', ['absensi']) }}" aria-label="Absensi Kesehatan">
+                                <a class="btn btn-light btn-block mb-2 w-100" href="http://127.0.0.1:8000/questionnaire/" aria-label="Kuisioner">
                                     Absensi Kesehatan
-                                </a>
-                            </li>
-                            <li>
-                                <a class="btn btn-light btn-block mb-2 w-100 {{ Request::get('page') == 'rekap' ? 'active' : '' }}" href="{{ route('mahasiswas.show', ['rekap']) }}" aria-label="Rekap Kehadiran">
-                                    Rekap Kehadiran
-                                </a>
-                            </li>
-                            <li>
-                                <a class="btn btn-light btn-block mb-2 w-100 {{ Request::get('page') == 'resume' ? 'active' : '' }}" href="{{ route('mahasiswas.show', ['resume']) }}" aria-label="Resume">
-                                    Resume
                                 </a>
                             </li>
                         </ul>
