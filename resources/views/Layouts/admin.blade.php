@@ -138,13 +138,13 @@
                         <a href="#" 
                         class="btn btn-light btn-block mb-1 w-100 d-flex justify-content-between align-items-center" 
                         data-bs-toggle="collapse" data-bs-target="#healthDropdown" aria-expanded="false" aria-label="Kesehatan Dropdown">
-                            <span><i class="fas fa-heartbeat" style="margin-right: 15px;"></i> Kesehatan</span>
+                            <span>Master</span>
                             <i class="fas fa-chevron-down"></i>
                         </a>
                         <ul id="healthDropdown" class="list-unstyled collapse ps-3">
                             <li>
                                 <a class="btn btn-light btn-block mb-2 w-100" href="http://127.0.0.1:8000/questionnaire/" aria-label="Kuisioner">
-                                    Absensi Kesehatan
+                                    Kuisioner
                                 </a>
                             </li>
                         </ul>

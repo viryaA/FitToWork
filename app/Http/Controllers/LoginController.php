@@ -78,8 +78,10 @@ class LoginController extends Controller
                     return redirect()->route('ukks.show', ['page' => 'beranda']);
                 case 'ROL007':
                     return redirect()->route('k3s.show', ['page' => 'beranda']);
+                case 'ROL008':
+                    return redirect()->route('admin.show', ['page' => 'beranda']);
                 default:
-                    return back()->withErrors(['login' => 'Role tidak dikenali.'])->withInput();
+                return view('login', ['errors' => new \Illuminate\Support\MessageBag(['login' => 'Role tidak dikenali.'])]);
             }
         }
 

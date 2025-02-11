@@ -21,42 +21,36 @@
             <div style="width: 400px; padding: 20px; background: rgba(255, 255, 255, 0.9); border-radius: 8px; box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);">
                 <h2 style="text-align: center; margin-bottom: 20px;">Login Fit to Work</h2>
                 <form action="{{ route('login.submit') }}" method="POST">
-                @csrf
+                    @csrf
+
+                    @if ($errors->has('login'))
+                        <div style="background: #ffdddd; color: #d8000c; padding: 10px; margin-bottom: 15px; border-radius: 4px; text-align: center;">
+                            {{ $errors->first('login') }}
+                        </div>
+                    @endif
+
+
                     <div style="margin-bottom: 15px;">
                         <label for="username" style="display: block; margin-bottom: 5px;">Nama Akun <span style="color: red;">*</span></label>
                         <input type="text" id="username" name="username" required style="width: 93%; padding: 10px; border: 1px solid #ccc; border-radius: 4px;">
                     </div>
+
                     <div style="margin-bottom: 15px;">
                         <label for="password" style="display: block; margin-bottom: 5px;">Kata Sandi <span style="color: red;">*</span></label>
                         <input type="password" id="password" name="password" required style="width: 93%; padding: 10px; border: 1px solid #ccc; border-radius: 4px;">
                     </div>
-                    <div style="margin-bottom: 15px;">
-                        <label for="captcha" style="display: block; margin-bottom: 5px;">Captcha <span style="color: red;">*</span></label>
-                        <div style="display: flex; align-items: center; gap: 10px;">
-                            <span id="captcha-value" style="font-size: 20px; font-weight: bold; background: #f0f0f0; padding: 5px 10px; border-radius: 4px;">
-                                <?php echo rand(100000, 999999); ?>
-                            </span>
-                            <input type="text" id="captcha" name="captcha" aria-label="Captcha Input" required style="flex: 1; padding: 10px; border: 1px solid #ccc; border-radius: 4px;">
-                            <button type="button" id="refresh-captcha" style="background: #007BFF; color: #ffffff; border: none; padding: 10px; border-radius: 4px; cursor: pointer;">
-                                <i class="fas fa-sync-alt"></i>
-                            </button>
-                        </div>
-                    </div>
-                    <script>
-                        document.getElementById('refresh-captcha').addEventListener('click', function() {
-                            const newCaptcha = Math.floor(100000 + Math.random() * 900000);
-                            document.getElementById('captcha-value').textContent = newCaptcha;
-                        });
-                    </script>
+
                     <div style="display: flex; justify-content: center; margin: 15px 0;">
                         <button type="submit" style="background: #008c4a; color: #ffffff; border: none; padding: 10px 15px; width: 100%; border-radius: 4px; cursor: pointer; font-size: 16px;">Masuk</button>
                     </div>
+
                     <div style="text-align: center;">
                         <a href="#" style="color: #007BFF; text-decoration: none; margin-bottom: 5px; display: inline-block;">Lupa Kata Sandi? Klik disini.</a>
                         <a href="#" style="color: #007BFF; text-decoration: none; margin-bottom: 5px; display: inline-block;">Login sebagai Mitra Kerja? Klik disini.</a>
                         <a href="#" style="color: #007BFF; text-decoration: none; display: inline-block;">Login sebagai Tamu? Klik disini.</a>
                     </div>
                 </form>
+
             </div>
         </main>
     </div>
