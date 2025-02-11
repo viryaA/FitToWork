@@ -1,4 +1,3 @@
-<!-- resources/views/form.blade.php -->
 @extends('layouts.mahasiswa')
 
 @section('title', 'Resume Absensi Kesehatan')
@@ -11,7 +10,7 @@
             vertical-align: middle;
         }
         .table th {
-            background-color:rgb(255, 255, 255);
+            background-color: rgb(255, 255, 255);
         }
         .table td a {
             color: #007bff;
@@ -31,15 +30,16 @@
             color: #000;
         }
         .divider {
-            border-top: 1px solidrgb(255, 255, 255);
+            border-top: 1px solid rgb(255, 255, 255);
             margin-top: 0.5rem;
             margin-bottom: 1rem;
         }
         .table-striped tbody tr:nth-of-type(even) {
-            background-color:rgb(255, 255, 255);
+            background-color: rgb(255, 255, 255);
         }
     </style>
 @endsection
+
 @section('content')
     <div class="content mt-4">
         <div class="d-flex align-items-center">
@@ -59,39 +59,18 @@
                 </tr>
             </thead>
             <tbody>
-            <tr>
-                    <td>Selasa, 19 November 2024</td>
-                    <td><a href="#">Ini surat keterangan sak</a></td>
-                    <td class="text-center">
-                        <!-- Ganti URL dengan lokasi file yang sesuai -->
-                        <a href="{{ asset('storage/surat_keterangan.pdf') }}" download>
-                            <i class="fas fa-download"></i>
-                        </a>
-                    </td>
-                </tr>
+                @foreach ($suratKeterangan as $surat)
                 <tr>
-                    <td>Selasa, 26 November 2024</td>
-                    <td><a href="#">Ini surat keterangan dokter kamu yaa, jangan lupa minum obatnya</a></td>
+                    <td>{{ date('l, d F Y', strtotime($surat->skn_created_date)) }}</td>
+                    <td><a href="#">{{ $surat->skn_status }}</a></td>
                     <td class="text-center">
-                        <!-- Ganti URL dengan lokasi file yang sesuai -->
-                        <a href="{{ asset('storage/surat_keterangan.pdf') }}" download>
+                        <a href="{{ asset('storage/' . $surat->skn_berkas) }}" download>
                             <i class="fas fa-download"></i>
                         </a>
                     </td>
                 </tr>
-                <tr>
-                    <td>Kamis, 28 November 2024</td>
-                    <td><a href="#">Surat Kesehatan dokter, segera dirujuk ke rumah sakit terdekat</a></td>
-                    <td class="text-center">
-                        <!-- Ganti URL dengan lokasi file yang sesuai -->
-                        <a href="{{ asset('storage/surat_keterangan.pdf') }}" download>
-                            <i class="fas fa-download"></i>
-                        </a>
-                    </td>
-                </tr>
+                @endforeach
             </tbody>
         </table>
-        
     </div>
 @endsection
-

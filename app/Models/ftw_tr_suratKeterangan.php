@@ -5,11 +5,11 @@ namespace App\Models;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 
-class SuratKeterangan extends Model
+class ftw_tr_suratKeterangan extends Model
 {
     use HasFactory;
     
-    protected $table = 'ftw_tr_suratKeterangan';
+    protected $table = 'ftw_tr_surat_Keterangan';
     
     protected $fillable = [
         'usr_id',
