@@ -15,6 +15,7 @@ return new class extends Migration
             $table->string('usr_ID', 50)->primary(); // PK
             $table->char('rol_id', 5)->nullable();   // FK
             $table->string('usr_STATUS', 15)->nullable();
+            $table->dateTime('last_login_at')->nullable();
             $table->string('usr_created_by', 50)->nullable();
             $table->dateTime('usr_created_date')->nullable();
         });

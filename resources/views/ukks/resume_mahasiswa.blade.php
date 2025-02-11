@@ -1,105 +1,146 @@
-<!-- resources/views/form.blade.php -->
 @extends('layouts.ukk')
 
 @section('title', 'Resume Absensi Kesehatan')
-@section('style')
-    <style>
-        body {
-            font-family: Arial, sans-serif;
-        }
-        .table th, .table td {
-            vertical-align: middle;
-        }
-        .table th {
-            background-color:rgb(255, 255, 255);
-        }
-        .table td a {
-            color: #007bff;
-            text-decoration: none;
-        }
-        .table td a:hover {
-            text-decoration: underline;
-        }
-        .header {
-            font-size: 1.5rem;
-            font-weight: bold;
-            color: #007bff;
-        }
-        .subheader {
-            font-size: 1.5rem;
-            font-weight: bold;
-            color: #000;
-        }
-        .divider {
-            border-top: 1px solidrgb(255, 255, 255);
-            margin-top: 0.5rem;
-            margin-bottom: 1rem;
-        }
-        .table-striped tbody tr:nth-of-type(even) {
-            background-color:rgb(255, 255, 255);
-        }
-    </style>
-@endsection
-@section('content')
-    <div class="content mt-4">
-        <div class="d-flex align-items-center">
-            <span class="header">Fit to Work</span>
-            <span class="mx-2">/</span>
-            <span class="subheader">Kesehatan</span>
-            <span class="mx-2">/</span>
-            <span class="subheader">Resume</span>
-        </div>
-        <div class="divider"></div>
-        <table class="table table-bordered table-striped">
-            <thead>
-                <tr>
-                    <th scope="col">Tanggal</th>
-                    <th scope="col">Keterangan</th>
-                    <th scope="col">Aksi</th>
-                </tr>
-            </thead>
-            <tbody>
-    <tr>
-        <td>Selasa, 19 November 2024</td>
-        <td><a href="#">Ini surat keterangan sak</a></td>
-        <td class="text-center" style="border: none;">
-            <!-- Ikon Upload dan Download -->
-            <a href="{{ asset('storage/surat_keterangan.pdf') }}" download style="color: #007bff; margin-right: 10px;">
-                <i class="fas fa-download"></i>
-            </a>
-            <a href="#" style="color: #007bff;">
-                <i class="fas fa-upload"></i>
-            </a>
-        </td>
-    </tr>
-    <tr>
-        <td>Selasa, 26 November 2024</td>
-        <td><a href="#">Ini surat keterangan dokter kamu yaa, jangan lupa minum obatnya</a></td>
-        <td class="text-center" style="border: none;">
-            <!-- Ikon Upload dan Download -->
-            <a href="{{ asset('storage/surat_keterangan.pdf') }}" download style="color: #007bff; margin-right: 10px;">
-                <i class="fas fa-download"></i>
-            </a>
-            <a href="#" style="color: #007bff;">
-                <i class="fas fa-upload"></i>
-            </a>
-        </td>
-    </tr>
-    <tr>
-        <td>Kamis, 28 November 2024</td>
-        <td><a href="#">Surat Kesehatan dokter, segera dirujuk ke rumah sakit terdekat</a></td>
-        <td class="text-center" style="border: none;">
-            <!-- Ikon Upload dan Download -->
-            <a href="{{ asset('storage/surat_keterangan.pdf') }}" download style="color: #007bff; margin-right: 10px;">
-                <i class="fas fa-download"></i>
-            </a>
-            <a href="#" style="color: #007bff;">
-                <i class="fas fa-upload"></i>
-            </a>
-        </td>
-    </tr>
-</tbody>
-        </table>
-    </div>
-@endsection
 
+
+@section('content')
+<div class="content mt-4">
+    <div class="d-flex align-items-center">
+        <span class="header">Fit to Work</span>
+        <span class="mx-2">/</span>
+        <span class="subheader">Kesehatan</span>
+        <span class="mx-2">/</span>
+        <span class="subheader">Resume</span>
+    </div>
+    <div class="divider"></div>
+    
+    @if (session('success'))
+        <div class="alert alert-success">
+            {{ session('success') }}
+        </div>
+    @endif
+    
+    @if ($errors->any())
+        <div class="alert alert-danger">
+            <ul>
+                @foreach ($errors->all() as $error)
+                    <li>{{ $error }}</li>
+                @endforeach
+            </ul>
+        </div>
+    @endif
+    
+    <form action="{{ route('resume.store') }}" method="POST" enctype="multipart/form-data">
+        @csrf
+        <div class="form-group">
+            <label for="tipe">Tipe *</label>
+            <select id="tipe" name="tipe" class="form-control" onchange="toggleFields()">
+                <option value="mahasiswa">Mahasiswa</option>
+                <option value="karyawan">Karyawan</option>
+            </select>
+        </div>
+
+        {{-- Form Mahasiswa --}}
+        <div id="mahasiswaFields">
+            <div class="form-group">
+                <label for="nim">Nomor Induk Mahasiswa (NIM) *</label>
+                <input type="text" id="nim" name="nim" class="form-control">
+                <button type="button" class="btn btn-primary mt-2" onclick="cariMahasiswa()">Cari</button>
+            </div>
+            <div class="form-group">
+                <label for="mhs_nama">Nama Mahasiswa *</label>
+                <input type="text" id="mhs_nama" name="mhs_nama" class="form-control" readonly>
+            </div>
+            <div class="form-group">
+                <label for="program_studi">Program Studi *</label>
+                <input type="text" id="program_studi" name="program_studi" class="form-control" readonly>
+            </div>
+            <div class="form-group">
+                <label for="mhs_angkatan">Angkatan *</label>
+                <input type="text" id="mhs_angkatan" name="mhs_angkatan" class="form-control" readonly>
+            </div>
+        </div>
+
+        {{-- Form Karyawan --}}
+        <div id="karyawanFields" style="display: none;">
+            <div class="form-group">
+                <label for="npk">Nomor Pokok Karyawan (NPK) *</label>
+                <input type="text" id="npk" name="npk" class="form-control">
+                <button type="button" class="btn btn-primary mt-2" onclick="cariKaryawan()">Cari</button>
+            </div>
+            <div class="form-group">
+                <label for="nama_karyawan">Nama Karyawan *</label>
+                <input type="text" id="nama_karyawan" name="nama_karyawan" class="form-control" readonly>
+            </div>
+            <div class="form-group">
+                <label for="bagian">Bagian *</label>
+                <input type="text" id="bagian" name="bagian" class="form-control" readonly>
+            </div>
+        </div>
+
+        <div class="form-group">
+            <label for="tanggal">Tanggal *</label>
+            <input type="date" id="tanggal" name="tanggal" class="form-control">
+        </div>
+
+        <div class="form-group">
+            <label for="dokumen">Dokumen Resume (.pdf) *</label>
+            <input type="file" id="dokumen" name="dokumen" class="form-control" accept=".pdf" required>
+            <small>Maksimum ukuran berkas adalah 10MB</small>
+        </div>
+
+        <button type="submit" class="btn btn-primary">Kirim</button>
+        <a href="{{ url()->previous() }}" class="btn btn-secondary">Kembali</a>
+    </form>
+</div>
+
+{{-- JavaScript --}}
+<script>
+    function toggleFields() {
+        let tipe = document.getElementById('tipe').value;
+        document.getElementById('mahasiswaFields').style.display = tipe === 'mahasiswa' ? 'block' : 'none';
+        document.getElementById('karyawanFields').style.display = tipe === 'karyawan' ? 'block' : 'none';
+    }
+
+    function cariMahasiswa() {
+    let nim = document.getElementById('nim').value;
+    fetch(`/api/cari-mahasiswa/${nim}`)
+        .then(response => response.json())
+        .then(data => {
+            if (data && data.mhs_nama) {
+                document.getElementById('mhs_nama').value = data.mhs_nama;
+                document.getElementById('program_studi').value = data.program_studi;
+                document.getElementById('mhs_angkatan').value = data.mhs_angkatan;
+            } else {
+                alert('Data tidak ditemukan, harap masukkan NIM yang benar.');
+            }
+        })
+        .catch(() => alert('Terjadi kesalahan, coba lagi.'));
+}
+
+
+    function cariKaryawan() {
+        let npk = document.getElementById('npk').value.trim();
+        if (!npk) {
+            alert("Silakan masukkan NPK terlebih dahulu.");
+            return;
+        }
+
+        fetch(`/api/cari-karyawan/${npk}`)
+            .then(response => response.json())
+            .then(data => {
+                if (data && data.kry_nama_depan && data.kry_nama_blk) {
+                    document.getElementById('nama_karyawan').value = data.kry_nama_depan + ' ' + data.kry_nama_blk;
+                    document.getElementById('bagian').value = data.hasOwnProperty('Bagian') ? data.Bagian : 'Tidak tersedia';
+                } else {
+                    alert('Data tidak ditemukan, harap masukkan data yang benar.');
+                }
+            })
+            .catch(() => alert('Gagal mengambil data. Silakan coba lagi.'));
+    }
+
+    document.addEventListener("DOMContentLoaded", function () {
+        document.getElementById("tanggal").valueAsDate = new Date();
+    });
+</script>
+@endsection

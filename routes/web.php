@@ -19,6 +19,13 @@ Route::get('mahasiswas/{page}', [MahasiswaController::class, 'show'])->name('mah
 // Dashboard Route with parameter 'page'
 Route::get('ukks/{page}', [UkkController::class, 'show'])->name('ukks.show');
 
+// Route tambahan untuk UKK: pencarian data mahasiswa & karyawan
+Route::get('/api/cari-mahasiswa/{nim}', [UkkController::class, 'cariMahasiswa'])->name('ukks.cariMahasiswa');
+Route::get('/api/cari-karyawan/{npk}', [UkkController::class, 'cariKaryawan'])->name('ukks.cariKaryawan');
+Route::post('/resume/store', [UkkController::class, 'store'])->name('resume.store');
+
+
+
 // Dashboard Route with parameter 'page'
 Route::get('k3s/{page}', [K3Controller::class, 'show'])->name('k3s.show');
 
@@ -33,7 +40,7 @@ Route::get('upts/{page}', [UPTController::class, 'show'])->name('upts.show');
 
 // Login Routes
 Route::get('/login', [LoginController::class, 'showLoginForm'])->name('login.form');
-Route::post('/login', [LoginController::class, 'processLogin'])->name('login.submit');
+Route::post('/login', [LoginController::class, 'login'])->name('login.submit');
 
 Route::post('/logout', [LoginController::class, 'logout'])->name('logout');
 

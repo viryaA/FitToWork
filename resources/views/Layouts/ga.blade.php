@@ -74,8 +74,8 @@
             <div class="d-flex justify-content-end align-items-center">
                 <div class="text-black text-end">
                     <p class="m-0">
-                        <strong>ALFIA FAUZIAH (GA)</strong><br>
-                        <small>Login terakhir: 15 Desember 2024, 00:02 WIB</small>
+                        <strong>{{ session('full_name') }} ({{ session('rol_id') }})</strong><br>
+                        <small> Login terakhir: {{ session('last_login_at') }}</small>
                     </p>
                 </div>
                 <div class="d-md-none">
@@ -158,14 +158,19 @@
                     <li>
                         <a href="#" 
                         class="btn btn-light btn-block mb-1 w-100 d-flex justify-content-between align-items-center" 
-                        data-bs-toggle="collapse" data-bs-target="#kecelakaanDropdown" aria-expanded="false">
+                        data-bs-toggle="collapse" data-bs-target="#laporanMhsDropdown" aria-expanded="false">
                             <span><i class="fas fa-heartbeat" style="margin-right: 15px;"></i> Laporan</span>
                             <i class="fas fa-chevron-down"></i>
                         </a>
-                        <ul id="kecelakaanDropdown" class="list-unstyled collapse ps-3">
+                        <ul id="laporanMhsDropdown" class="list-unstyled collapse ps-3">
                             <li>
-                                <a class="btn btn-light btn-block mb-2 w-100 {{ Request::get('page') === 'laporan_kecelakaan' ? 'active' : '' }}" href="{{ route('gas.show', ['laporan_kecelakaan']) }}">
-                                Laporan Kecelakaan
+                                <a class="btn btn-light btn-block mb-2 w-100 {{ Request::get('page') === 'laporanMhs' ? 'active' : '' }}" href="{{ route('gas.show', ['laporanMhs']) }}">
+                                Laporan Mahasiswa
+                                </a>
+                            </li>
+                            <li>
+                                <a class="btn btn-light btn-block mb-2 w-100 {{ Request::get('page') === 'laporanKry' ? 'active' : '' }}" href="{{ route('gas.show', ['laporanKry']) }}">
+                                Laporan Karyawan
                                 </a>
                             </li>
                         </ul>

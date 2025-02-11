@@ -11,11 +11,9 @@ return new class extends Migration
      */
     public function up(): void
     {
-        Schema::create('ftw_tr_answers', function (Blue
-        print $table) {
+        Schema::create('ftw_tr_answers', function (Blueprint $table) {
             $table->id('ans_id');
             $table->foreignId('res_id');
-            $table->foreignId('que_id');
             $table->foreignId('que_id')->nullable();
             $table->string('ans_text', 100)->nullable();
             $table->integer('ans_points_earned')->nullable();

@@ -171,7 +171,16 @@ class KuisionerController extends Controller
             // Commit transaction
             DB::commit();
 
-            return response()->json(['message' => 'Questionnaire updated successfully.']);
+            try {
+                $questionnaire = ftw_ms_questionnaire::with(['questions' => function($query) {
+                    $query->with('options')->orderBy('que_id');
+                }])->findOrFail($id);
+    
+                return view('Kuisioner.show', compact('questionnaire'));
+            } catch (\Exception $e) {
+                Log::error('Error loading questionnaire:', ['error' => $e->getMessage()]);
+                return redirect()->back()->withErrors(['error' => 'Questionnaire not found']);
+            }
         } catch (\Exception $e) {
             // Rollback transaction in case of an error
             DB::rollBack();
@@ -179,6 +188,7 @@ class KuisionerController extends Controller
 
             return response()->json(['error' => $e->getMessage()], 500);
         }
+        return redirect()->back()->withErrors(['error' => 'Questionnaire not found']);
     }
 
     public function show($id)
@@ -215,29 +225,33 @@ class KuisionerController extends Controller
                 'qur_id' => $id,
                 'res_responder_id' => auth()->id() ?? null, // If using authentication
             ]);
+
             // Store the answers
             foreach ($request->answers as $questionId => $answer) {
-                // Log::debug($questionId);
-                // Log::debug($answer);
-                if(is_array($answer)){
-                    foreach($answer as $data){
+                $question = ftw_ms_question::find($questionId);
+                $que_points = $question ? $question->que_points : 0; // Ensure que_points is fetched
+
+                if (is_array($answer)) {
+                    foreach ($answer as $data) {
+                        $option = ftw_ms_option::find($data);
+                        $opt_is_correct = $option ? $option->opt_is_correct : 0;
+                        $points_earned = $opt_is_correct ? $que_points : 0; // Earn points only if correct
+
                         ftw_tr_answer::create([
                             'que_id' => $questionId,
                             'res_id' => $response->id, // Link answers to the response
                             'opt_id' => $data,
                             'ans_text' => null,
-                            // 'answered_by' => auth()->id() ?? null, // If using authentication
-                            // 'answered_at' => now(),
+                            'ans_points_earned' => $points_earned, // Store earned points
                         ]);
                     }
-                }else{
+                } else {
                     ftw_tr_answer::create([
                         'que_id' => $questionId,
                         'res_id' => $response->id, // Link answers to the response
                         'opt_id' => null,
                         'ans_text' => $answer,
-                        // 'answered_by' => auth()->id() ?? null, // If using authentication
-                        // 'answered_at' => now(),
+                        'ans_points_earned' => 0, // Default to 0 for non-multiple-choice
                     ]);
                 }
             }
@@ -248,6 +262,7 @@ class KuisionerController extends Controller
             return redirect()->back()->withErrors(['error' => 'Error submitting answers']);
         }
     }
+
 
 
     // public function submit(Request $request, $id)

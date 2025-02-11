@@ -80,8 +80,8 @@
             <div class="d-flex justify-content-end align-items-center">
                 <div class="text-black text-end">
                     <p class="m-0">
-                        <strong>ALFIA FAUZIAH (MAHASISWA)</strong><br>
-                        <small>Login terakhir: 15 Desember 2024, 00:02 WIB</small>
+                        <strong>{{ session('full_name') }} ({{ session('rol_id') }})</strong><br>
+                        <small>{{ session('last_login_at') }}</small>
                     </p>
                 </div>
                 <div class="d-md-none">

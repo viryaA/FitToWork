@@ -17,6 +17,7 @@ return new class extends Migration
             $table->char('kry_jenis_kelamin', 2);
             $table->string('kry_alamat', 255);
             $table->string('kry_email', 50);
+            $table->string('Bagian', 50);
             $table->timestamps();
         });
     }

@@ -74,8 +74,8 @@
             <div class="d-flex justify-content-end align-items-center">
                 <div class="text-black text-end">
                     <p class="m-0">
-                        <strong>ALFIA FAUZIAH (DKA)</strong><br>
-                        <small>Login terakhir: 15 Desember 2024, 00:02 WIB</small>
+                        <strong>{{ session('full_name') }} ({{ session('rol_id') }})</strong><br>
+                        <small> Login terakhir: {{ session('last_login_at') }}</small>
                     </p>
                 </div>
                 <div class="d-md-none">
@@ -163,9 +163,14 @@
                             <i class="fas fa-chevron-down"></i>
                         </a>
                         <ul id="kecelakaanDropdown" class="list-unstyled collapse ps-3">
+                        <li>
+                                <a class="btn btn-light btn-block mb-2 w-100 {{ Request::get('page') === 'laporanMhs' ? 'active' : '' }}" href="{{ route('gas.show', ['laporanMhs']) }}">
+                                Laporan Mahasiswa
+                                </a>
+                            </li>
                             <li>
-                                <a class="btn btn-light btn-block mb-2 w-100 {{ Request::get('page') === 'laporan_kecelakaan' ? 'active' : '' }}" href="{{ route('dkas.show', ['laporan_kecelakaan']) }}">
-                                Laporan Kecelakaan
+                                <a class="btn btn-light btn-block mb-2 w-100 {{ Request::get('page') === 'laporanKry' ? 'active' : '' }}" href="{{ route('gas.show', ['laporanKry']) }}">
+                                Laporan Karyawan
                                 </a>
                             </li>
                         </ul>

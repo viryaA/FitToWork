@@ -10,7 +10,17 @@ class GAController extends Controller
     {
         // Check if the view exists to prevent errors
         $validPages = ['absensi', 'beranda', 'index','resume', 'rekap', 'laporan_kecelakaan'];  // Add your valid pages here
-
+        if ($page === 'absensi') {
+            $kuisionerController = new KuisionerController();
+            $response = $kuisionerController->show(1);
+    
+            // Check if the response is a redirect (error handling)
+            if ($response instanceof \Illuminate\Http\RedirectResponse) {
+                return $response;
+            }
+    
+            return view('gas.absensi', ['questionnaire' => $response->getData()['questionnaire']]);
+        }
         if (in_array($page, $validPages)) {
             return view('gas.' . $page);
         } else {
