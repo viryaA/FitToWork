@@ -4,6 +4,8 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
+use Illuminate\Support\Str;
+use App\Models\ftw_tr_response;     
 
 class UkkController extends Controller
 {
@@ -19,6 +21,10 @@ class UkkController extends Controller
             }
     
             return view('ukks.absensi', ['questionnaire' => $response->getData()['questionnaire']]);
+        }
+        if ($page === 'rekap') {
+            $responses = ftw_tr_response::where('res_responder_id', session('usr'))->get();
+            return view('ukks.rekap', ['responses' => $responses]);
         }
         if (view()->exists("ukks.$page")) {
             return view("ukks.$page");
@@ -92,11 +98,12 @@ class UkkController extends Controller
         }
 
         // Simpan file ke storage
-        $path = $request->file('dokumen')->store('resumes');
-
+        $path = $request->file('dokumen')->store('resumes', 'public');
+        $cleanPath = Str::after($path, '/'); // Removes everything before and including the first '/'
+        
         DB::table('ftw_tr_surat_keterangan')->insert([
             'usr_ID' => $user->usr_ID, 
-            'skn_berkas' => $path,
+            'skn_berkas' => $cleanPath, // Use the modified path
             'skn_status' => 'Aktif', 
             'skn_created_by' => 'Furri Sukma', 
             'skn_created_date' => now(),

@@ -164,12 +164,12 @@
                         </a>
                         <ul id="kecelakaanDropdown" class="list-unstyled collapse ps-3">
                         <li>
-                                <a class="btn btn-light btn-block mb-2 w-100 {{ Request::get('page') === 'laporanMhs' ? 'active' : '' }}" href="{{ route('gas.show', ['laporanMhs']) }}">
+                                <a class="btn btn-light btn-block mb-2 w-100 {{ Request::get('page') === 'laporanMhs' ? 'active' : '' }}" href="{{ route('dkas.show', ['laporanMhs']) }}">
                                 Laporan Mahasiswa
                                 </a>
                             </li>
                             <li>
-                                <a class="btn btn-light btn-block mb-2 w-100 {{ Request::get('page') === 'laporanKry' ? 'active' : '' }}" href="{{ route('gas.show', ['laporanKry']) }}">
+                                <a class="btn btn-light btn-block mb-2 w-100 {{ Request::get('page') === 'laporanKry' ? 'active' : '' }}" href="{{ route('dkas.show', ['laporanKry']) }}">
                                 Laporan Karyawan
                                 </a>
                             </li>

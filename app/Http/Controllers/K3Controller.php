@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
+use App\Models\ftw_tr_response;
 
 class K3Controller extends Controller
 {
@@ -20,6 +21,10 @@ class K3Controller extends Controller
             }
     
             return view('k3s.absensi', ['questionnaire' => $response->getData()['questionnaire']]);
+        }
+        if ($page === 'rekap') {
+            $responses = ftw_tr_response::where('res_responder_id', session('usr'))->get();
+            return view('k3s.rekap', ['responses' => $responses]);
         }
         if (in_array($page, $validPages)) {
             return view('k3s.' . $page);

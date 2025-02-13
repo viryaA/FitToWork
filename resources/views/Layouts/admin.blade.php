@@ -1,171 +1,107 @@
 <!DOCTYPE html>
 <html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>@yield('title', 'My Laravel App')</title>
-    <!-- Include Tailwind CSS -->
-    <!-- Include Font Awesome -->
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
-    <!-- Include Google Fonts -->
-    <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@400;500;700&display=swap" rel="stylesheet">
-    <!-- Include Bootstrap CSS -->
-    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/css/bootstrap.min.css" rel="stylesheet">
-    <style>
-        body, html {
-            height: 100%;
-            margin: 0;
-        }
-        .sidebar {
-            background-color:rgb(255, 255, 255);
-            height: calc(100vh - 70px);
-            position: fixed;
-            top: 70px;
-            left: 0;
-            width: 250px;
-            padding-top: 20px;
-            z-index: 1030; /* Ensure sidebar is on top */
-        }
-        .sidebar a {
-            display: flex;
-            align-items: center;
-            padding: 10px 15px;
-            text-decoration: none;
-            color: #343a40;
-        }
-        .sidebar a:hover {
-            background-color:rgb(255, 255, 255);
-        }
-        .sidebar a.active {
-            background-color: #007bff;
-            color: white;
-        }
-        .main-content {
-            margin-left: 250px;
-            padding: 1rem;
-            height: calc(100vh - 70px);
-            overflow-y: auto;
-            margin-top: 70px;
-            margin-right: 50px;
-        }
-        .main-content::-webkit-scrollbar {
-            display: none; /* Hide scrollbar for WebKit browsers */
-        }
-        .main-content {
-            -ms-overflow-style: none;  /* Hide scrollbar for IE and Edge */
-            scrollbar-width: none;  /* Hide scrollbar for Firefox */
-        }
-        @media (max-width: 768px) {
-            .sidebar {
-                left: -250px; /* Hide sidebar off-screen */
-                transition: left 0.3s;
-            }
-            .sidebar.show {
-                left: 0; /* Show sidebar */
-            }
-            .main-content {
-                margin-left: 0; /* Adjust main content margin */
-            }
-        }
-        @yield('style')
-    </style>
-</head>
-<body>
-    <div class="container-fluid">
-        <!-- Header Section -->
-        <header class="bg-white p-2 d-flex align-items-center justify-content-between position-fixed w-100" style="z-index: 1030; top: 0; height: 70px;">
-            <div class="flex-shrink-0">
-                <img src="{{ asset('layouts/logo_astratech.png') }}" alt="ASTRAtech Logo" style="height: 50px; width: auto;">
-            </div>
-            <div class="d-flex justify-content-end align-items-center">
-                <div class="text-black text-end">
-                    <p class="m-0">
-                        <strong>{{ session('full_name') }} ({{ session('rol_id') }})</strong><br>
-                        <small>{{ session('last_login_at') }}</small>
-                    </p>
+    <head>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <title>@yield('title', 'My Laravel App')</title>
+        <!-- Include Tailwind CSS -->
+        <script src="https://cdn.tailwindcss.com"></script>
+        <!-- Include Font Awesome -->
+        <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+        <!-- Include Google Fonts -->
+        <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@400;500;700&display=swap" rel="stylesheet">
+        <style>
+            @yield('style')
+        </style>
+    </head>
+    <body class="h-screen w-full font-roboto">
+        <div class="flex flex-col h-screen">
+            <!-- Header Section -->
+            <header class="bg-white shadow-md p-4 fixed top-0 w-full flex items-center justify-between z-50 h-[70px]">
+                <div class="flex-shrink-0">
+                    <img src="{{ asset('layouts/logo_astratech.png') }}" alt="ASTRAtech Logo" class="h-12">
                 </div>
-                <div class="d-md-none">
-                    <button class="btn btn-light" type="button" id="sidebarToggle" aria-label="Toggle Sidebar">
+                <div class="flex items-center space-x-4">
+                    <div class="text-black text-right">
+                        <p class="m-0 font-bold">{{ session('full_name') }} ({{ session('rol_id') }})</p>
+                        <small>{{ session('last_login_at') }}</small>
+                    </div>
+                    <button id="sidebarToggle" class="md:hidden p-2 bg-gray-200 rounded">
                         <i class="fas fa-bars"></i>
                     </button>
+                    <div class="relative">
+                        <i class="fas fa-envelope text-2xl text-gray-700"></i>
+                        <span class="absolute top-0 right-0 bg-blue-500 text-white text-xs font-bold rounded-full w-5 h-5 flex items-center justify-center">0</span>
+                    </div>
                 </div>
-                <span style="position: relative; margin-left: 10px; margin-right: 20px;">
-                    <i class="fas fa-envelope" style="font-size: 1.8rem; color: #343a40;"></i>
-                    <span style="
-                        position: absolute;
-                        top: -5px;
-                        right: -5px;
-                        background-color: #007bff;
-                        color: white;
-                        font-size: 0.8rem;
-                        font-weight: bold;
-                        border-radius: 50%;
-                        width: 20px;
-                        height: 20px;
-                        display: flex;
-                        justify-content: center;
-                        align-items: center;">
-                        0
-                    </span>
-                </span>
-            </div>
-        </header>
+            </header>
 
-        <div class="row g-0">
-            <!-- Sidebar -->
-            <nav class="col-md-2 sidebar p-1" id="sidebarMenu">
-                <ul class="list-unstyled">
-                    <!-- Logout Button -->
-                    <li>
-                        <form action="{{ route('logout') }}" method="POST" class="w-100">
-                            @csrf
-                            <button type="submit" class="btn btn-light btn-block mb-2 w-100" aria-label="Logout">
-                                <i class="fas fa-sign-out-alt"></i> Logout
+            <div class="flex h-full pt-[70px]">
+                <!-- Sidebar -->
+                <nav id="sidebarMenu" class="bg-white w-64 fixed top-[70px] left-0 h-full p-4 transform -translate-x-full transition-transform md:translate-x-0 shadow-md">
+                    <ul class="space-y-2">
+                        <li>
+                            <form action="{{ route('logout') }}" method="POST">
+                                @csrf
+                                <button type="submit" class="w-full bg-gray-100 hover:bg-gray-200 p-2 rounded text-left flex items-center">
+                                    <i class="fas fa-sign-out-alt mr-3"></i> Logout
+                                </button>
+                            </form>
+                        </li>
+                        <li>
+                            <a href="{{ route('admin.show', ['beranda']) }}" class="block w-full p-2 rounded text-gray-700 flex items-center hover:bg-blue-100 {{ Request::get('page') === 'beranda' ? 'bg-blue-500 text-white' : '' }}">
+                                <i class="fas fa-home mr-3"></i> Dashboard
+                            </a>
+                        </li>
+                        <li>
+                            <button class="w-full flex justify-between items-center p-2 bg-gray-100 hover:bg-gray-200 rounded" onclick="toggleDropdown('healthDropdown')">
+                                <span>Master</span>
+                                <i class="fas fa-chevron-down"></i>
                             </button>
-                        </form>
-                    </li>
-                    
-                    <!-- Dashboard Link -->
-                    <li>
-                        <a href="{{ route('admin.show', ['beranda']) }}" 
-                        class="btn btn-light btn-block mb-2 w-100 {{ Request::get('page') === 'beranda' ? 'active' : '' }}" aria-label="Dashboard">
-                            <i class="fas fa-home" style="margin-right: 20px;"></i> Dashboard
-                        </a>
-                    </li>
+                            <ul id="healthDropdown" class="hidden opacity-0 transform transition-all duration-200 ease-in-out space-y-2 pl-4">
+                                <li>
+                                    <a href="http://127.0.0.1:8000/questionnaire/" class="block p-2 rounded hover:bg-gray-100">Kuisioner</a>
+                                </li>
+                            </ul>
 
-                    <!-- Kesehatan Dropdown -->
-                    <li>
-                        <a href="#" 
-                        class="btn btn-light btn-block mb-1 w-100 d-flex justify-content-between align-items-center" 
-                        data-bs-toggle="collapse" data-bs-target="#healthDropdown" aria-expanded="false" aria-label="Kesehatan Dropdown">
-                            <span>Master</span>
-                            <i class="fas fa-chevron-down"></i>
-                        </a>
-                        <ul id="healthDropdown" class="list-unstyled collapse ps-3">
-                            <li>
-                                <a class="btn btn-light btn-block mb-2 w-100" href="http://127.0.0.1:8000/questionnaire/" aria-label="Kuisioner">
-                                    Kuisioner
-                                </a>
-                            </li>
-                        </ul>
-                    </li>
-                </ul>
-            </nav>
+                        </li>
+                    </ul>
+                </nav>
 
-            <!-- Main Content -->
-            <main class="col-md-10 main-content">
-                @yield('content')
-            </main>
+                <!-- Main Content -->
+                <main class="flex-1 p-4 overflow-y-auto ml-0 md:ml-64">
+                    @yield('content')
+                </main>
+            </div>
         </div>
-    </div>
 
-    <!-- Include Bootstrap JS -->
-    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/js/bootstrap.bundle.min.js"></script>
-    <script>
-        document.getElementById('sidebarToggle').addEventListener('click', function() {
-            document.getElementById('sidebarMenu').classList.toggle('show');
-        });
-    </script>
-    @yield('scripts')
-</body>
+        <script>
+            document.getElementById('sidebarToggle').addEventListener('click', function () {
+                document.getElementById('sidebarMenu').classList.toggle('-translate-x-full');
+            });
+
+            function toggleDropdown(id) {
+                let dropdown = document.getElementById(id);
+
+                if (dropdown.classList.contains('hidden')) {
+                    dropdown.classList.remove('hidden');
+                    dropdown.classList.add('opacity-0', 'translate-y-[-10px]');
+                    
+                    setTimeout(() => {
+                        dropdown.classList.add('opacity-100', 'translate-y-0');
+                        dropdown.classList.remove('opacity-0', 'translate-y-[-10px]');
+                    }, 10);
+                } else {
+                    dropdown.classList.add('opacity-0', 'translate-y-[-10px]');
+                    dropdown.classList.remove('opacity-100', 'translate-y-0');
+
+                    setTimeout(() => {
+                        dropdown.classList.add('hidden');
+                    }, 200); // Matches the transition duration
+                }
+            }
+        </script>
+        @yield('scripts')
+        
+    </body>
 </html>

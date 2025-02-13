@@ -1,4 +1,4 @@
-@extends('layouts.dka')
+@extends('layouts.mahasiswa')
 @section('title', 'Form Absensi Kesehatan')
 
 @section('style')

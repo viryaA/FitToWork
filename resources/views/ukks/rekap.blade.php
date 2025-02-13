@@ -1,7 +1,7 @@
-<!-- resources/views/form.blade.php -->
 @extends('layouts.ukk')
 
 @section('title', 'Rekap Absensi Kesehatan')
+
 @section('style')
     <style>
         body {
@@ -11,7 +11,7 @@
             vertical-align: middle;
         }
         .table th {
-            background-color:rgb(255, 255, 255);
+            background-color: #f8f9fa;
         }
         .table td a {
             color: #007bff;
@@ -31,15 +31,20 @@
             color: #000;
         }
         .divider {
-            border-top: 1px solidrgb(255, 255, 255);
+            border-top: 1px solid #ddd;
             margin-top: 0.5rem;
             margin-bottom: 1rem;
         }
         .table-striped tbody tr:nth-of-type(even) {
-            background-color:rgb(255, 255, 255);
+            background-color: #f2f2f2;
+        }
+        .text-center i {
+            font-size: 1.2rem;
+            color: #007bff;
         }
     </style>
 @endsection
+
 @section('content')
     <div class="content mt-4">
         <div class="d-flex align-items-center">
@@ -50,47 +55,34 @@
             <span class="subheader">Rekap</span>
         </div>
         <div class="divider"></div>
-        <table class="table table-bordered table-striped">
-            <thead>
-                <tr>
-                    <th scope="col">Tanggal</th>
-                    <th scope="col">Status Kesehatan</th>
-                    <th scope="col">Aksi</th>
-                </tr>
-            </thead>
-            <tbody>
-    <tr>
-        <td>Selasa, 19 November 2024</td>
-        <td><a href="#">Sehat</a></td>
-        <td class="text-center">
-            <!-- Ganti URL dengan lokasi file yang sesuai -->
-            <a href="{{ asset('storage/surat_keterangan.pdf') }}">
-                <i class="fas fa-eye"></i>
-            </a>
-        </td>
-    </tr>
-    <tr>
-        <td>Selasa, 26 November 2024</td>
-        <td><a href="#">Sakit</a></td>
-        <td class="text-center">
-            <!-- Ganti URL dengan lokasi file yang sesuai -->
-            <a href="{{ asset('storage/surat_keterangan.pdf') }}">
-                <i class="fas fa-eye"></i>
-            </a>
-        </td>
-    </tr>
-    <tr>
-        <td>Kamis, 28 November 2024</td>
-        <td><a href="#">Sehat</a></td>
-        <td class="text-center">
-            <!-- Ganti URL dengan lokasi file yang sesuai -->
-            <a href="{{ asset('storage/surat_keterangan.pdf') }}">
-                <i class="fas fa-eye"></i>
-            </a>
-        </td>
-    </tr>
-</tbody>
-        </table>
+
+        @if($responses->isEmpty())
+            <div class="alert alert-warning text-center">
+                Tidak ada data rekapan kesehatan tersedia.
+            </div>
+        @else
+            <table class="table table-bordered table-striped">
+                <thead>
+                    <tr>
+                        <th scope="col">ID</th>
+                        <th scope="col">Questionnaire ID</th>
+                        <th scope="col">Status</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    @foreach($responses as $response)
+                        <tr>
+                            <td>{{ $response->res_id }}</td>
+                            <td>{{ $response->qur_id }}</td>
+                            <td>
+                                <a href="#">
+                                    {{ $response->res_type === 'sehat' ? 'Sehat' : 'Sakit' }}
+                                </a>
+                            </td>
+                        </tr>
+                    @endforeach
+                </tbody>
+            </table>
+        @endif
     </div>
 @endsection
-

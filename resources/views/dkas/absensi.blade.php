@@ -20,6 +20,9 @@
             border-top: 1px solid #dee2e6;
             margin: 0.5rem 0 1rem;
         }
+        .text-danger {
+            color: red;
+        }
     </style>
 @endsection
 
@@ -45,8 +48,13 @@
 
     <div class="card mb-4">
         <div class="card-body">
+            @if(session('success'))
+                <div class="bg-green-100 border border-green-400 text-green-700 px-4 py-3 rounded mb-4">
+                    {{ session('success') }}
+                </div>
+            @endif
 
-            <form action="{{ route('questionnaire.submit', $questionnaire->qur_id) }}" method="POST">
+            <form action="{{ route('questionnaire.submit', $questionnaire->qur_id) }}" method="POST" id="questionnaireForm">
                 @csrf
                 @foreach($questionnaire->questions as $question)
                 <div class="card mb-4">
@@ -68,19 +76,21 @@
                                     @endforeach
                                 </select>
                             @else
-                                <div class="ms-3">
+                                <div class="ms-3 checkbox-group" data-required="{{ $question->que_required ? 'true' : 'false' }}">
                                     @foreach($question->options as $option)
                                         <div class="form-check">
                                             <input class="form-check-input" type="{{ $question->que_type === 'Checkboxes' ? 'checkbox' : 'radio' }}" 
                                                 name="answers[{{ $question->que_id }}]{{ $question->que_type === 'Checkboxes' ? '[]' : '' }}" 
                                                 id="option-{{ $option->opt_id }}" 
-                                                value="{{ $option->opt_id }}" 
-                                                @if($question->que_required) required @endif>
+                                                value="{{ $option->opt_id }}">
                                             <label class="form-check-label" for="option-{{ $option->opt_id }}">
                                                 {{ $option->opt_text }}
                                             </label>
                                         </div>
                                     @endforeach
+                                    @if($question->que_type === 'Checkboxes' && $question->que_required)
+                                        <div class="text-danger checkbox-error" style="display: none;">Please select at least one option.</div>
+                                    @endif
                                 </div>
                             @endif
                         @elseif($question->que_type === 'Short Answer')
@@ -105,8 +115,28 @@
 
 @section('scripts')
 <script>
-    function toggleTextarea(show) {
-        document.getElementById('textareaWrapper').style.display = show ? 'block' : 'none';
-    }
+    document.addEventListener("DOMContentLoaded", function() {
+        document.getElementById("questionnaireForm").addEventListener("submit", function(event) {
+            let valid = true;
+
+            document.querySelectorAll(".checkbox-group").forEach(function(group) {
+                if (group.dataset.required === "true") {
+                    let checked = group.querySelectorAll("input[type='checkbox']:checked").length;
+                    let errorMessage = group.querySelector(".checkbox-error");
+
+                    if (checked === 0) {
+                        valid = false;
+                        errorMessage.style.display = "block";
+                    } else {
+                        errorMessage.style.display = "none";
+                    }
+                }
+            });
+
+            if (!valid) {
+                event.preventDefault(); // Prevent form submission
+            }
+        });
+    });
 </script>
 @endsection

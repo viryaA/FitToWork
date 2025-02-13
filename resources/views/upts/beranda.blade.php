@@ -11,8 +11,8 @@
             vertical-align: middle;
         }
         .table th {
-            background-color:rgb(255, 255, 255);
-        } 
+            background-color: rgb(255, 255, 255);
+        }
         .table td a {
             color: #007bff;
             text-decoration: none;
@@ -20,66 +20,78 @@
         .table td a:hover {
             text-decoration: underline;
         }
-        .header {
-            font-size: 1.5rem;
+        .card-header {
+            background-color: #007bff;
+            color: white;
             font-weight: bold;
-            color: #007bff;
         }
-        .subheader {
-            font-size: 1.5rem;
-            font-weight: bold;
-            color: #000;
+        .chart-container {
+            display: flex;
+            align-items: flex-start;
+            justify-content: space-between;
         }
-        .divider {
-            border-top: 1px solidrgb(255, 255, 255);
-            margin-top: 0.5rem;
-            margin-bottom: 1rem;
+        .chart-box {
+            width: 30%;
+            margin-left: 15%;
         }
-        .table-striped tbody tr:nth-of-type(even) {
-            background-color: #f8f9fa;
-        }
-        .tabs {
-          border-bottom: 1px solid #ddd;
-          padding: 10px;
-        }
-
-        .tab-list {
-          list-style: none;
-          display: flex;
-          padding: 0;
-          margin: 0;
-        }
-        .alert {
-          padding: 20px;
-          display: flex;
-          align-items: center;
-          justify-content: space-between;
-          background-color: #ff9800;
-          color: #333;
-          font-weight: bold;
-          border-radius: 5px;
+        .table-box {
+            width: 40%; 
+            padding-left: 5px;
+            text-align: right;
         }
     </style>
 @endsection
 @section('content')
 <div class="content">
-    <div class="alert alert-warning" style="color: white;">
-        <i class="fas fa-exclamation-triangle" style="margin-right: 10px;"> <strong>SISTEM PENGINGAT</strong></i>
+    <div class="card mb-4">
+        <div class="card-header">Selamat Datang di Sistem Absensi Kesehatan Fit to Work</div>
+        <div class="card-body">
+            <p>Sistem Informasi ini akan membantu Anda dalam mengelola absensi kesehatan dengan lebih efisien. Mari mulai dengan mengeksplorasi fitur-fitur yang ada dengan mengakses menu yang tersedia.</p>
+        </div>
     </div>
-    <div class="tabs">
-      <ul class="tab-list">
-        <li class="tab-item active">Beranda</li>
-        <li class="tab-item"><a href="#" class="tab-link">Statistik Kesehatan</a></li>
-      </ul>
+    
+    <div class="card">
+        <div class="card-header">Grafik Kesehatan</div>
+        <div class="card-body">
+            <div class="chart-container">
+                <div class="chart-box">
+                    <canvas id="healthChart"></canvas>
+                </div>
+                <div class="table-box">
+                    <table class="table table-striped">
+                        <thead>
+                            <tr>
+                                <th>Tanggal</th>
+                                <th>Sehat</th>
+                                <th>Tindakan</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr>
+                                <td>29 Januari 2025, 16:22</td>
+                                <td>40</td>
+                                <td>100</td>
+                            </tr>
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+        </div>
     </div>
-        <div class="welcome-card">
-        <h3>Selamat Datang Civitas Akademika ASTRAtech!</h3>
-        <p>
-          Ini merupakan halaman beranda Fit to Work, silahkan untuk mengakses menu yang tersedia
-          atau melihat informasi dashboard lainnya pada bilah tabulasi di atas.
-        </p>
-      </div>
-    </div>
-  </div>
-@endsection
+</div>
 
+<script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+<script>
+    var ctx = document.getElementById('healthChart').getContext('2d');
+    var healthChart = new Chart(ctx, {
+        type: 'pie',
+        data: {
+            labels: ['Sehat', 'Tindakan'],
+            datasets: [{
+                data: [40, 100],
+                backgroundColor: ['#007bff', '#ff3860']
+            }]
+        }
+    });
+</script>
+@endsection

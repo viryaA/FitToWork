@@ -67,7 +67,6 @@
                         <th scope="col">ID</th>
                         <th scope="col">Questionnaire ID</th>
                         <th scope="col">Status</th>
-                        <th scope="col" class="text-center">Aksi</th>
                     </tr>
                 </thead>
                 <tbody>
@@ -78,11 +77,6 @@
                             <td>
                                 <a href="#">
                                     {{ $response->res_type === 'sehat' ? 'Sehat' : 'Sakit' }}
-                                </a>
-                            </td>
-                            <td class="text-center">
-                                <a href="{{ asset('storage/surat_keterangan.pdf') }}" target="_blank">
-                                    <i class="fas fa-eye"></i>
                                 </a>
                             </td>
                         </tr>

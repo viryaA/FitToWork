@@ -51,6 +51,7 @@ class LoginController extends Controller
                 'rol_id' => $user->rol_id,
                 'last_login_at' => $timeNow,
                 'full_name' => $mahasiswa->mhs_nama ?? ($karyawan->kry_nama_depan . ' ' . $karyawan->kry_nama_blk),
+                'usr' => $request['username'],
             ]);
 
         // // Cek pengguna di database berdasarkan username dan password (seharusnya gunakan hashing untuk password)
@@ -81,7 +82,7 @@ class LoginController extends Controller
                 case 'ROL008':
                     return redirect()->route('admin.show', ['page' => 'beranda']);
                 default:
-                return view('login', ['errors' => new \Illuminate\Support\MessageBag(['login' => 'Role tidak dikenali.'])]);
+                return redirect()->back()->withErrors(['login' => 'Invalid credentials']);
             }
         }
 

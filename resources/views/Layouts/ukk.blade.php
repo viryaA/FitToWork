@@ -63,17 +63,11 @@
             <div>
                 <img src="{{ asset('layouts/logo_astratech.png') }}" alt="ASTRAtech Logo" style="height: 50px;">
             </div>
-            /* @php
-    $user = auth()->user();
-    $nama = $user?->mhs_nama ?? trim(($user?->kry_nama_depan ?? '') . ' ' . ($user?->kry_nama_blk ?? '')) ?: 'Pengguna';
-    $role = $user?->rol_deskripsi ?? 'Tidak Diketahui';
-    $lastLogin = $user?->last_login ? \Carbon\Carbon::parse($user->last_login)->format('d F Y, H:i') : '-';
-@endphp */
 
-<p class="m-0">
-    <strong>{{ session('full_name') }} ({{ session('rol_id') }})</strong><br>
-    <small> Login terakhir: {{ session('last_login_at') }}</small>
-</p>
+            <p class="m-0">
+                <strong>{{ session('full_name') }} ({{ session('rol_id') }})</strong><br>
+                <small> Login terakhir: {{ session('last_login_at') }}</small>
+            </p>
 
         </header>
 

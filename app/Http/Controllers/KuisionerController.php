@@ -92,8 +92,11 @@ class KuisionerController extends Controller
                     }
                 }
             }
-
-            return redirect()->route('form.create')->with('success', 'Questionnaire created successfully!');
+            $questionnaires = ftw_ms_questionnaire::with(['questions.options'])->get();
+            
+            session()->flash('success', 'Questionnaire created successfully!');
+            
+            return view('Kuisioner.index', compact('questionnaires'));
         } catch (\Exception $e) {
             Log::error('Error storing questionnaire:', ['error' => $e->getMessage()]);
             return redirect()->back()->withErrors(['error' => 'There was an error processing your request. Please try again.']);
@@ -171,16 +174,13 @@ class KuisionerController extends Controller
             // Commit transaction
             DB::commit();
 
-            try {
-                $questionnaire = ftw_ms_questionnaire::with(['questions' => function($query) {
-                    $query->with('options')->orderBy('que_id');
-                }])->findOrFail($id);
-    
-                return view('Kuisioner.show', compact('questionnaire'));
-            } catch (\Exception $e) {
-                Log::error('Error loading questionnaire:', ['error' => $e->getMessage()]);
-                return redirect()->back()->withErrors(['error' => 'Questionnaire not found']);
-            }
+
+            $questionnaires = ftw_ms_questionnaire::with(['questions.options'])->get();
+            
+            session()->flash('success', 'Questionnaire updated successfully!');
+            
+            return view('Kuisioner.index', compact('questionnaires'));
+
         } catch (\Exception $e) {
             // Rollback transaction in case of an error
             DB::rollBack();
@@ -223,7 +223,7 @@ class KuisionerController extends Controller
             // Save the response first
             $response = ftw_tr_response::create([
                 'qur_id' => $id,
-                'res_responder_id' => auth()->id() ?? null, // If using authentication
+                'res_responder_id' => session('usr'), // If using authentication
             ]);
 
             // Store the answers
@@ -255,14 +255,40 @@ class KuisionerController extends Controller
                     ]);
                 }
             }
-
+            session()->flash('success', 'Answers submitted successfully!');
             return redirect()->back()->with('success', 'Answers submitted successfully!');
         } catch (\Exception $e) {
             Log::error('Error submitting answers:', ['error' => $e->getMessage()]);
             return redirect()->back()->withErrors(['error' => 'Error submitting answers']);
         }
     }
-
+    public function destroy($id)
+    {
+        try {
+            // Find the questionnaire
+            $questionnaire = ftw_ms_questionnaire::with('questions.options')->findOrFail($id);
+    
+            // Delete associated options
+            foreach ($questionnaire->questions as $question) {
+                $question->options()->delete();
+            }
+    
+            // Delete associated questions
+            $questionnaire->questions()->delete();
+    
+            // Delete the questionnaire
+            $questionnaire->delete();
+    
+            Log::debug('Deleted questionnaire:', ['id' => $id]);
+    
+            session()->flash('success', 'Questionnaire deleted successfully!');
+            return redirect()->route('Kuisioner.index');
+        } catch (\Exception $e) {
+            Log::error('Error deleting questionnaire:', ['error' => $e->getMessage()]);
+            return redirect()->back()->withErrors(['error' => 'There was an error deleting the questionnaire. Please try again.']);
+        }
+    }
+    
 
 
     // public function submit(Request $request, $id)

@@ -3,6 +3,10 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
+use App\Models\ftw_tr_response;
+use App\Models\ftw_tr_suratKeterangan;
+use Illuminate\Support\Facades\Storage;
+
 
 class MahasiswaController extends Controller
 {
@@ -21,6 +25,18 @@ class MahasiswaController extends Controller
     
             return view('mahasiswas.absensi', ['questionnaire' => $response->getData()['questionnaire']]);
         }
+        if ($page === 'rekap') {
+            $responses = ftw_tr_response::where('res_responder_id', session('usr'))->get();
+            return view('mahasiswas.rekap', ['responses' => $responses]);
+        }
+        
+
+        if ($page === 'resume') {
+            $userId = session('usr'); // Adjust this key based on your session structure
+            $suratKeterangan = ftw_tr_suratKeterangan::where('usr_ID', $userId)->get(); // Change 'user_id' to the actual column name
+            return view('mahasiswas.resume', compact('suratKeterangan'));
+        }
+
         if (in_array($page, $validPages)) {
             return view('mahasiswas.' . $page);
         } else {

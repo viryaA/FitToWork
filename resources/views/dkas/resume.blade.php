@@ -1,7 +1,7 @@
-<!-- resources/views/form.blade.php -->
 @extends('layouts.dka')
 
 @section('title', 'Resume Absensi Kesehatan')
+
 @section('style')
     <style>
         body {
@@ -9,9 +9,11 @@
         }
         .table th, .table td {
             vertical-align: middle;
+            text-align: center;
         }
         .table th {
-            background-color:rgb(255, 255, 255);
+            background-color: #f8f9fa;
+            font-weight: bold;
         }
         .table td a {
             color: #007bff;
@@ -31,15 +33,16 @@
             color: #000;
         }
         .divider {
-            border-top: 1px solidrgb(255, 255, 255);
+            border-top: 1px solid #dee2e6;
             margin-top: 0.5rem;
             margin-bottom: 1rem;
         }
         .table-striped tbody tr:nth-of-type(even) {
-            background-color:rgb(255, 255, 255);
+            background-color: #f2f2f2;
         }
     </style>
 @endsection
+
 @section('content')
     <div class="content mt-4">
         <div class="d-flex align-items-center">
@@ -50,48 +53,38 @@
             <span class="subheader">Resume</span>
         </div>
         <div class="divider"></div>
-        <table class="table table-bordered table-striped">
-            <thead>
-                <tr>
-                    <th scope="col">Tanggal</th>
-                    <th scope="col">Keterangan</th>
-                    <th scope="col">Aksi</th>
-                </tr>
-            </thead>
-            <tbody>
-            <tr>
-                    <td>Selasa, 19 November 2024</td>
-                    <td><a href="#">Ini surat keterangan sak</a></td>
-                    <td class="text-center">
-                        <!-- Ganti URL dengan lokasi file yang sesuai -->
-                        <a href="{{ asset('storage/surat_keterangan.pdf') }}" download>
-                            <i class="fas fa-download"></i>
-                        </a>
-                    </td>
-                </tr>
-                <tr>
-                    <td>Selasa, 26 November 2024</td>
-                    <td><a href="#">Ini surat keterangan dokter kamu yaa, jangan lupa minum obatnya</a></td>
-                    <td class="text-center">
-                        <!-- Ganti URL dengan lokasi file yang sesuai -->
-                        <a href="{{ asset('storage/surat_keterangan.pdf') }}" download>
-                            <i class="fas fa-download"></i>
-                        </a>
-                    </td>
-                </tr>
-                <tr>
-                    <td>Kamis, 28 November 2024</td>
-                    <td><a href="#">Surat Kesehatan dokter, segera dirujuk ke rumah sakit terdekat</a></td>
-                    <td class="text-center">
-                        <!-- Ganti URL dengan lokasi file yang sesuai -->
-                        <a href="{{ asset('storage/surat_keterangan.pdf') }}" download>
-                            <i class="fas fa-download"></i>
-                        </a>
-                    </td>
-                </tr>
-            </tbody>
-        </table>
-        
+
+        @if ($suratKeterangan->isEmpty())
+            <div class="alert alert-warning text-center">
+                Belum ada data resume kesehatan.
+            </div>
+        @else
+            <table class="table table-bordered table-striped">
+                <thead>
+                    <tr>
+                        <th scope="col">No</th>
+                        <th scope="col">Tanggal</th>
+                        <th scope="col">Aksi</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    @foreach ($suratKeterangan as $index => $surat)
+                        <tr>
+                            <td>{{ $index + 1 }}</td>
+                            <td>{{ \Carbon\Carbon::parse($surat->skn_created_date)->translatedFormat('l, d F Y') }}</td>
+                            <td>
+                            @if ($surat->skn_berkas && Storage::exists('public/resumes/' . $surat->skn_berkas))
+                                <a href="{{ Storage::url('resumes/' . $surat->skn_berkas) }}" target="_blank" download>
+                                    <i class="fas fa-download"></i> Unduh
+                                </a>
+                            @else
+                                <span class="text-muted">Tidak ada berkas</span>
+                            @endif
+                        </td>
+                        </tr>
+                    @endforeach
+                </tbody>
+            </table>
+        @endif
     </div>
 @endsection
-
